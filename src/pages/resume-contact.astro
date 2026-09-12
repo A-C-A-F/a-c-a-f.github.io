@@ -1,0 +1,100 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+---
+
+<SiteLayout
+  title="Resume & Contact"
+  description="View or download Ariel Christian Felices’s résumé and connect by email or LinkedIn. Senior Data Analyst in Cavite, Philippines."
+  active="Resume & Contact"
+>
+  <section class="hero">
+    <h1>Resume &amp; Contact</h1>
+    <p class="value">
+      A condensed employment overview, with supporting depth in{' '}
+      <a href="/experience/">Experience</a> and the <a href="/work/">Work cases</a>.
+    </p>
+  </section>
+  <section class="resume-actions" aria-labelledby="resume-heading">
+    <h2 id="resume-heading">Résumé</h2>
+    <p>Two-page PDF · Professional experience and capabilities</p>
+    <div class="actions">
+      <a class="resume-button" href="/resume/Ariel_Christian_Felices_Resume.pdf">
+        View résumé (PDF)
+      </a>
+      <a
+        class="text-link"
+        href="/resume/Ariel_Christian_Felices_Resume.pdf"
+        download="Ariel_Christian_Felices_Resume.pdf"
+      >
+        Download résumé (PDF) ↓
+      </a>
+    </div>
+  </section>
+  <section class="contact-details" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Contact</h2>
+    <p class="identity">
+      <strong>Ariel Christian Felices</strong>
+      <br />
+      Senior Data Analyst
+      <br />
+      Cavite, Philippines
+    </p>
+    <ul>
+      <li>
+        <a href="mailto:arielchristian.felices@gmail.com">
+          arielchristian.felices@gmail.com
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.linkedin.com/in/ariel-christian-felices/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Connect on LinkedIn ↗<span class="link-note"> (opens in a new tab)</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</SiteLayout>
+
+<style>
+  .resume-actions,
+  .contact-details {
+    padding: 36px 0;
+    border-top: 1px solid var(--line);
+  }
+  h2 {
+    margin: 0 0 16px;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .resume-button {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+  }
+  .identity {
+    line-height: 1.8;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 0;
+  }
+  li + li {
+    margin-top: 18px;
+  }
+  .contact-details a {
+    overflow-wrap: anywhere;
+  }
+  .link-note {
+    font-size: 0.875em;
+  }
+</style>

@@ -1,0 +1,208 @@
+---
+{
+  'title': 'Competitive Intelligence Built on Reliable BI Modeling',
+  'description': 'I designed and built a Power BI competitive-intelligence report with SQL, DAX and contextual search-term analysis, then published and maintained it for Ads Team use.',
+  'context': 'Sunco Lighting',
+  'order': 4,
+  'featured': false,
+  'tags': ['Power BI / DAX', 'BI modeling'],
+  'detailed': true,
+  'linkLabel': 'Read the competitive-intelligence case',
+  'opening':
+    {
+      'subtitle': 'Designing a comprehensive, repeatable Power BI solution for product comparisons and contextual search-term investigation.',
+      'contribution': 'I performed my own analysis and designed and built the Power BI solution, including its supporting SQL, DAX measures, reporting model and contextual search-term views. I used an earlier Excel analysis as a comparison reference, then validated, published and maintained the report for Ads Team use.',
+      'outcome': 'Published in Power BI Service, approved for use and used by the Ads Team; maintained after publication.',
+      'evidence': 'Professional narrative; an independent static example of comparison scope and summary/detail separation using synthetic data.',
+    },
+}
+---
+
+import EvidencePanel from '../../components/EvidencePanel.astro';
+import CompetitiveExample from '../../components/CompetitiveExample.astro';
+import Scope from '../../components/Scope.astro';
+
+<div>
+  <section id="context">
+    <p class="eyebrow">{'01 / Context'}</p>
+    <h2>{'Make a useful comparison easier to investigate'}</h2>
+    <p>
+      {
+        'Advertising stakeholders needed a more comprehensive and repeatable way to compare relevant products, identify competitors worth investigating and examine search-term context. An earlier Excel analysis was a useful business reference and comparison benchmark, but it did not provide the full scope of the reporting solution I delivered.'
+      }
+    </p>
+    <p>
+      {
+        'The Power BI report needed to preserve a clear basis for comparison while making filters and search-term context usable. Product-level measures and lower-level detail also needed to remain distinct so that additional context would not repeat summary values.'
+      }
+    </p>
+    <h3>{'My contribution and ownership'}</h3>
+    <p>
+      {
+        'I performed my own analysis, compared my results with the earlier spreadsheet and collaborated with its author to develop the required comparison logic. I designed and built the Power BI report and developed its supporting SQL, DAX measures, reporting model and contextual search-term views. I expanded the analysis through structured comparison periods, product filters and reporting-grain controls, then validated, published and maintained the completed solution.'
+      }
+    </p>
+    <p>
+      {
+        'The earlier spreadsheet and any supplied query inputs served as references for my work. I developed the reporting solution and worked with the analyst and stakeholders to confirm comparison meaning and requirements. Upstream data systems and final advertising decisions remained outside the report’s scope.'
+      }
+    </p>
+  </section>
+  <section id="approach">
+    <p class="eyebrow">{'02 / Analytical and modeling approach'}</p>
+    <h2>{'Prepare comparable inputs'}</h2>
+    <p>
+      {
+        'I brought warehouse-backed product and sales context into the report and prepared inconsistent product attributes for comparison filters. This included normalization, missing-value handling and checks on the information used to compare products.'
+      }
+    </p>
+    <p>
+      {
+        'I developed my own comparisons and checked matched product populations and results against the earlier Excel analysis. I worked with its author to understand and develop comparison logic, while differences in attributes became documented investigation and follow-up items rather than assumptions that either source was uniformly correct.'
+      }
+    </p>
+    <h3>{'Define periods and calculation meaning'}</h3>
+    <p>
+      {
+        'I developed structured rolling-period comparisons, checked their boundaries against the reference analysis and worked through comparison meaning with the relevant stakeholders. DAX measures made period values, changes, average-price interpretation and missing-value behavior explicit. This gave the report a defined comparison basis without treating every source refresh as proof of complete or current data.'
+      }
+    </p>
+    <h3>{'Keep summary and detail at the right level'}</h3>
+    <p>
+      {
+        'Reporting grain describes what one record or measure represents. I kept summary measures separate from lower-level search-term data and used a product-level relationship to control how the views connected. This addressed the risk of multiplying summary values when several detail records related to one product.'
+      }
+    </p>
+    <p>
+      {
+        'I ranked search-term context within each relevant product and exposed it through a contextual detail view. Product-comparison filters and within-product search-term ranking served different purposes: one defined the comparison group, while the other helped investigate a selected product without overloading the main report.'
+      }
+    </p>
+  </section>{' '}
+  <section id="example">
+    <p class="eyebrow">{'03 / Independent technical example'}</p>
+    <h2>{'One product total, several context records'}</h2>
+    <p>
+      {
+        'This original static example uses invented products, periods, queries, and activity units. It shows a modeling principle without reproducing a Power BI file, employer dashboard, or bridge design. Its fictional product ranking illustrates comparison scope; it is not the historical search-term ranking algorithm.'
+      }
+    </p>
+    <EvidencePanel
+      id="comparison-example"
+      kind="Independent technical example · Synthetic data"
+    >
+      <p id="preparation-note" class="caption">
+        {
+          'Created for this portfolio with AI-assisted development using synthetic data. It does not reproduce employer code, data, dashboard design, business rules, or system architecture.'
+        }
+      </p>
+      <CompetitiveExample />
+      <p class="caption">
+        {
+          'This example demonstrates a modeling principle, not the historical employer report or its results. All labels and figures are invented; the activity units represent no actual advertising or commercial performance.'
+        }
+      </p>
+    </EvidencePanel>
+  </section>
+  <section id="validation">
+    <p class="eyebrow">{'04 / Validation and quality controls'}</p>
+    <h2>{'Check the comparison and the context'}</h2>
+    <p>
+      {
+        'I matched selected report views to the reference analysis, checked calculation definitions and investigated differences between the spreadsheet and warehouse sources. I documented discrepancies and follow-up needs without treating completion of a comparison as proof that every upstream issue had been corrected.'
+      }
+    </p>
+    <p>
+      {
+        'For the final contextual view, I checked that product filtering selected the intended context and reconciled its totals with the warehouse totals. Both final checks passed before publication.'
+      }
+    </p>
+    <p>
+      {
+        'I presented the report to stakeholders and incorporated feedback on filters, information density and scope. Their review helped keep competitor investigation separate from future recommendation and optimization features.'
+      }
+    </p>
+  </section>
+  <section id="outcome">
+    <p class="eyebrow">{'05 / Supported outcome'}</p>
+    <h2>{'A published report used for investigation'}</h2>
+    <p>
+      {
+        'After completing the final filtering and total-reconciliation checks, I published the report in Power BI Service. The report was approved for use and used by the Ads Team to investigate competitor and search-term context. I continued to maintain the report after publication.'
+      }
+    </p>
+    <p>
+      {
+        'The solution I designed and built extended the earlier spreadsheet reference into more comprehensive, repeatable reporting with documented calculations, comparison controls and contextual search-term views. Its role was to support investigation; advertising decisions remained with the business.'
+      }
+    </p>
+  </section>
+  <Scope>
+    <ul>
+      <li>
+        {
+          'I designed and built the delivered Power BI solution and performed its supporting analysis. An earlier Excel analysis and supplied query inputs informed the work; comparison meaning and requirements were developed collaboratively. Upstream systems and final advertising decisions remained outside my ownership.'
+        }
+      </li>
+      <li>
+        {
+          'Validation covered the report’s comparison behavior, product filtering and contextual-total agreement. It did not establish that every source discrepancy was resolved or guarantee complete data under every condition.'
+        }
+      </li>
+      <li>
+        {
+          'This case covers the published Competitive Intelligence report and its subsequent maintenance. Later advertising-source reconciliation, other advertising reports and recurring uploads were separate work. Future recommendation features are not presented as delivered capabilities.'
+        }
+      </li>
+      <li>
+        {
+          'Employer SQL, DAX, data, source names, rules, report design and screenshots remain private. The portfolio example is independently created and does not represent historical employer performance or business results.'
+        }
+      </li>
+    </ul>
+  </Scope>
+  <section id="tools">
+    <p class="eyebrow">{'06 / Supporting capabilities'}</p>
+    <h2>{'Tools and methods'}</h2>
+    <p>
+      {
+        'Power BI, Power BI Service, SQL, DAX, Amazon Redshift, Excel-based source comparison, product-attribute preparation, reporting-grain analysis, filter-context design, period comparisons, scoped search-term ranking, exception investigation, reporting documentation and report maintenance.'
+      }
+    </p>
+    <div class="tags">
+      <span>Power BI and DAX</span>
+      <span>SQL preparation</span>
+      <span>Reporting-grain controls</span>
+      <span>Contextual reporting</span>
+      <span>Source comparison</span>
+      <span>Report publication and maintenance</span>
+    </div>
+  </section>{' '}
+  <section id="evidence-index">
+    <p class="eyebrow">{'07 / Evidence index'}</p>
+    <h2>{'Inspect the modeling example'}</h2>
+    <ol class="evidence-index">
+      <li>
+        <span class="number">{'01'}</span>
+        <div>
+          <a href="#synthetic-summary">{'Fictional product summary and scoped ranks'}</a>
+          <small>{'Independent technical example · Synthetic data'}</small>
+        </div>
+      </li>
+      <li>
+        <span class="number">{'02'}</span>
+        <div>
+          <a href="#synthetic-detail">{'Separate fictional query context'}</a>
+          <small>{'Independent technical example · Synthetic data'}</small>
+        </div>
+      </li>
+      <li>
+        <span class="number">{'03'}</span>
+        <div>
+          <a href="#synthetic-grain-check">{'Summary-total duplication check'}</a>
+          <small>{'Independent technical example · Synthetic data'}</small>
+        </div>
+      </li>
+    </ol>
+  </section>
+</div>

@@ -1,0 +1,66 @@
+---
+import { getCollection, render } from 'astro:content';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import CaseContents from '../../components/CaseContents.astro';
+export async function getStaticPaths() {
+  return (await getCollection('cases')).map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+
+<SiteLayout title={d.title} description={d.description} active="Work">
+  <a class="back-link" href="/work/">
+    ← Back to selected work
+  </a>
+  <div class="case-hero">
+    <p class="type">Professional case</p>
+    <h1>{d.title}</h1>
+    <p class="case-subtitle">{d.detailed ? d.opening.subtitle : d.description}</p>
+    <p class="context">{d.context}</p>
+  </div>
+  {d.detailed ? (
+    <>
+      <dl class="case-facts">
+        <div>
+          <dt>My contribution</dt>
+          <dd>{d.opening.contribution}</dd>
+        </div>
+        <div>
+          <dt>Supported outcome</dt>
+          <dd>{d.opening.outcome}</dd>
+        </div>
+        <div>
+          <dt>Public evidence</dt>
+          <dd>{d.opening.evidence}</dd>
+        </div>
+      </dl>
+      <div class="case-layout">
+        <CaseContents />
+        <article class="article">
+          <Content />
+          <div class="article-footer">
+            <a class="text-link" href="/work/">
+              Explore selected work →
+            </a>
+            <a class="text-link" href="/resume-contact/">
+              Resume &amp; contact →
+            </a>
+          </div>
+        </article>
+      </div>
+    </>
+  ) : (
+    <div class="summary-page">
+      <div class="tags">
+        {d.tags.map((t) => (
+          <span>{t}</span>
+        ))}
+      </div>
+    </div>
+  )}
+</SiteLayout>

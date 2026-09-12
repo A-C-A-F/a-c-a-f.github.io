@@ -1,0 +1,39 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import EvidencePanel from './EvidencePanel.astro';
+interface Props {
+  entry: CollectionEntry<'cases'>;
+  kind?: 'Independent illustration' | 'Independent technical example · Synthetic data';
+  supporting?: boolean;
+}
+const {
+  entry,
+  kind = 'Independent technical example · Synthetic data',
+  supporting = false,
+} = Astro.props;
+const d = entry.data;
+---
+
+<article class={supporting ? 'support-card' : 'featured-case'}>
+  <div>
+    <p class="type">Professional case</p>
+    <p class="context">{d.context}</p>
+    <h3>{d.title}</h3>
+    <p class="summary">{d.description}</p>
+    <div class="tags">
+      {d.tags.map((t) => (
+        <span>{t}</span>
+      ))}
+    </div>
+    <div class="case-action">
+      <a class="text-link" href={'/work/' + entry.id + '/'}>
+        {d.linkLabel ?? 'Read the case summary'} →
+      </a>
+    </div>
+  </div>
+  {Astro.slots.has('evidence') && (
+    <EvidencePanel preview kind={kind}>
+      <slot name="evidence" />
+    </EvidencePanel>
+  )}
+</article>

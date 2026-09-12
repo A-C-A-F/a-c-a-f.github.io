@@ -1,0 +1,31 @@
+node_modules/
+dist/
+.astro/
+.local/
+.env*
+*.log
+.DS_Store
+Thumbs.db
+
+# Generated test output and local tooling.
+/test-results/
+/playwright-report/
+/blob-report/
+/.playwright/
+/.cache/
+/.venv/
+/venv/
+
+# Private review material belongs outside the checkout.
+/screenshots/
+/review/
+/reviews/
+/Portfolio_Publication_Review_2026/
+/Phase_*/
+*.zip
+*.doc
+*.docx
+*.odt
+/Resume_Variants_*/
+/Ultimate_Default_*/
+/Specialized_Resume_*/

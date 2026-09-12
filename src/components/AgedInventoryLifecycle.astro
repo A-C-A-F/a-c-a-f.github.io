@@ -1,0 +1,179 @@
+<figure
+  class="inventory-lifecycle"
+  aria-labelledby="inventory-lifecycle-caption"
+  aria-describedby="inventory-lifecycle-text"
+>
+  <p id="inventory-lifecycle-text" class="lifecycle-text">
+    Generic source domains move through matching and normalization, movement and coverage
+    measures, three separate scenario models, validation gates, an explainable
+    recommendation, and final business review.
+  </p>
+  <p class="sequence-cue">Follow stages 01–07.</p>
+  <ol class="lifecycle-steps">
+    <li>
+      <span class="stage-type">Inputs</span>
+      <strong>Source domains</strong>
+      <small>
+        Bring the required product, inventory, sales, and economic context together.
+      </small>
+    </li>
+    <li>
+      <span class="stage-type">Preparation</span>
+      <strong>Matching and normalization</strong>
+      <small>
+        Connect records and make classifications and measurement inputs comparable.
+      </small>
+    </li>
+    <li>
+      <span class="stage-type">Movement</span>
+      <strong>Velocity and inventory coverage</strong>
+      <small>Relate recent movement to the aged quantity under review.</small>
+    </li>
+    <li>
+      <span class="stage-type">Scenarios</span>
+      <strong>Three financial paths</strong>
+      <small>
+        Model removal or disposal, discounted sell-through, and liquidation separately.
+      </small>
+    </li>
+    <li>
+      <span class="stage-type">Controls</span>
+      <strong>Validation gates</strong>
+      <small>
+        Hold incomplete or unsuitable records for review instead of forcing an answer.
+      </small>
+    </li>
+    <li>
+      <span class="stage-type">Output</span>
+      <strong>Explainable recommendation</strong>
+      <small>
+        Present the strongest or least-negative modeled result with a plain-English
+        reason.
+      </small>
+    </li>
+    <li>
+      <span class="stage-type">Authority</span>
+      <strong>Business review</strong>
+      <small>
+        Apply operational eligibility and additional context before choosing the action.
+      </small>
+    </li>
+  </ol>
+  <figcaption id="inventory-lifecycle-caption" class="caption">
+    A data-free lifecycle illustrating how a financial comparison can remain traceable
+    from source preparation through human review. Numbering, headings, and descriptions
+    communicate the sequence without relying on color.
+  </figcaption>
+</figure>
+
+<style>
+  .lifecycle-text {
+    margin: 18px 0 0;
+  }
+
+  .lifecycle-steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin: 24px 0 18px;
+    padding: 0;
+    list-style: none;
+    counter-reset: inventory-stage;
+  }
+
+  .sequence-cue {
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .lifecycle-steps li {
+    position: relative;
+    min-width: 0;
+    padding: 17px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--paper);
+    counter-increment: inventory-stage;
+  }
+
+  .lifecycle-steps li::before {
+    content: counter(inventory-stage, decimal-leading-zero);
+    display: inline-grid;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 13px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--teal);
+    color: white;
+    font:
+      700 12px/1 Consolas,
+      monospace;
+  }
+
+  .lifecycle-steps li:not(:last-child)::after {
+    content: '↓';
+    position: absolute;
+    right: auto;
+    bottom: -22px;
+    left: 50%;
+    color: var(--teal);
+    font-weight: 700;
+  }
+
+  .stage-type,
+  .lifecycle-steps strong,
+  .lifecycle-steps small {
+    display: block;
+  }
+
+  .stage-type {
+    margin-bottom: 6px;
+    color: var(--muted);
+    font:
+      700 11px/1.4 Consolas,
+      monospace;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .lifecycle-steps strong {
+    margin-bottom: 7px;
+  }
+
+  .lifecycle-steps small {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .inventory-lifecycle figcaption {
+    margin-top: 14px;
+  }
+
+  @media (min-width: 701px) {
+    .lifecycle-steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .lifecycle-steps li:last-child {
+      grid-column: 1 / -1;
+    }
+
+    .lifecycle-steps li:not(:last-child)::after {
+      content: none;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .lifecycle-steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 30px 18px;
+    }
+
+    .lifecycle-steps li:last-child {
+      grid-column: 2;
+    }
+  }
+</style>

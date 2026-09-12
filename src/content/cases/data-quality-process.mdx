@@ -1,0 +1,245 @@
+---
+{
+  'title': 'Building a Reusable Data Quality Framework and Operating Process',
+  'description': 'I designed and implemented a reusable R and PostgreSQL data-quality framework that supported recurring audits, standardized reporting, cycle comparisons, and owner-routed correction follow-up.',
+  'context': 'LifeBank Foundation',
+  'order': 3,
+  'featured': false,
+  'tags': ['R and R Markdown', 'Data-quality governance'],
+  'detailed': true,
+  'linkLabel': 'Read the data-quality framework case',
+  'opening':
+    {
+      'subtitle': 'Turning table-specific quality rules into repeatable database checks, management-level monitoring, remediation-ready exceptions, and a governed operating process.',
+      'contribution': 'I designed and implemented a reusable R/R Markdown validation framework with table-specific rule configurations, read-oriented PostgreSQL access, rule evaluation, health scorecards, visual diagnostics, record-level exception outputs, and recurring audit packages. I also authored and implemented the cross-functional operating protocol.',
+      'outcome': 'Operating protocol formally approved and put into use; framework deployed across multiple core operational datasets and transitioned to Data Engineering for continued recurring execution.',
+      'evidence': 'Professional narrative; an independent data-free lifecycle illustration; and a clean-room synthetic R example.',
+    },
+}
+---
+
+import EvidencePanel from '../../components/EvidencePanel.astro';
+import DataQualityProcess from '../../components/DataQualityProcess.astro';
+import DataQualitySyntheticDemo from '../../components/DataQualitySyntheticDemo.astro';
+import Scope from '../../components/Scope.astro';
+
+<div>
+  <section id="context">
+    <p class="eyebrow">{'01 / Context'}</p>
+    <h2>{'A quality check needs an operating path after it finds an exception'}</h2>
+    <p class="lead">
+      {
+        'One-time checks could identify problems, but they did not by themselves establish consistent rule meaning, correction ownership, or evidence of what changed in a later cycle.'
+      }
+    </p>
+    <p>
+      {
+        'Different datasets required different rules. Managers and analysts needed summary-level visibility into data health, while technical and data owners needed detailed exception evidence they could investigate and act on.'
+      }
+    </p>
+    <p>
+      {
+        'The operating design kept ingestion, analytical auditing, business clarification, and source correction as distinct responsibilities. That separation made findings traceable without treating detection as completed remediation.'
+      }
+    </p>
+    <div class="role-note">
+      <p>
+        <strong>{'My contribution.'}</strong>
+        {
+          ' I designed and implemented the reusable R/R Markdown framework and its table-specific validation implementations. I built its read-oriented database access, reusable checking and runner patterns, rule evaluation, diagnostics, health summaries, record-level exception outputs, and recurring audit packages. I also compared audit cycles, authored the cross-functional operating protocol, and coordinated the operational handoff.'
+        }
+      </p>
+    </div>
+  </section>
+
+  <section id="approach">
+    <p class="eyebrow">{'02 / Framework and operating approach'}</p>
+    <h2>{'Reuse the checking pattern while keeping rules specific to each dataset'}</h2>
+    <p>
+      {
+        'I built a reusable framework with table-specific implementations. Common database, checking, reporting, and export patterns could be reused, while each dataset retained the rule configuration needed for its own structure and business meaning.'
+      }
+    </p>
+    <p>
+      {
+        'The framework used read-oriented PostgreSQL access and automatic audit-period handling. It produced local audit outputs rather than writing changes back to the database.'
+      }
+    </p>
+
+    <h3>{'Translate definitions into repeatable checks'}</h3>
+    <p>
+      {
+        'The table-specific configurations applied reusable checks for completeness, uniqueness, validity, ranges, categories, patterns, dates, nullable fields, and text cleanliness. Explicit missing-column and exceptional-condition handling kept structural failures visible instead of silently dropping a check.'
+      }
+    </p>
+    <p>
+      {
+        'Each check produced a rule-level PASS or FAIL status with supporting counts, rates, and affected-record detail. A passing rule meant that its configured condition was met for that audit; it did not guarantee that the complete dataset was perfectly correct.'
+      }
+    </p>
+
+    <h3>{'Give each audience evidence it can use'}</h3>
+    <div class="output-groups">
+      <div>
+        <h4>{'Management and analyst monitoring'}</h4>
+        <ul>
+          <li>{'Data-health summaries and health classifications'}</li>
+          <li>{'Column scorecards, charts, and visual rule matrices'}</li>
+          <li>{'A consistent view of where attention was concentrated'}</li>
+        </ul>
+      </div>
+      <div>
+        <h4>{'Technical and data-owner follow-up'}</h4>
+        <ul>
+          <li>{'Rule-level results and detailed exceptions'}</li>
+          <li>{'Correction-ready extracts and owner-routed material'}</li>
+          <li>{'Enough detail to investigate findings without changing the source'}</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>{'Make responsibility explicit'}</h3>
+    <p>
+      {
+        'I authored the operating protocol and coordinated its implementation with Data Engineering. Data Engineering owned upstream ingestion and later took over recurring execution of the automation I created. Relevant technical and business owners controlled field definitions, and source owners retained responsibility for correction.'
+      }
+    </p>
+    <p>
+      {
+        'The handoff transferred recurring execution, not authorship of the framework. My contribution remained its analytical design, implementation, reporting structure, cycle comparison, and operating-process development.'
+      }
+    </p>
+
+  </section>
+
+<section id="example">
+  <p class="eyebrow">{'03 / Independent illustration'}</p>
+  <h2>{'Keep the analytical audit connected to owner-led remediation'}</h2>
+  <p>
+    {
+      'This data-free lifecycle shows how a recurring audit can connect reusable validation, two levels of reporting, owner routing, external correction, and cycle comparison without confusing those responsibilities.'
+    }
+  </p>
+  <EvidencePanel id="quality-illustration" kind="Independent illustration">
+    <p id="preparation-note" class="caption">
+      {
+        'Created independently for this portfolio. It explains a general audit and remediation lifecycle and does not reproduce employer code, data, fields, rules, thresholds, reports, screens, or system architecture.'
+      }
+    </p>
+    <h3>{'A recurring data-quality lifecycle'}</h3>
+    <DataQualityProcess />
+  </EvidencePanel>
+
+  <h3>{'Inspect a small synthetic audit cycle'}</h3>
+  <p>
+    {
+      'A compact clean-room example applies configuration-driven rules to fictional records, routes exceptions to fictional owner groups, and compares two audit cycles. The written case remains understandable without opening the code.'
+    }
+  </p>
+  <EvidencePanel
+    id="quality-synthetic-example"
+    kind="Independent technical example · Synthetic data"
+  >
+    <DataQualitySyntheticDemo />
+  </EvidencePanel>
+</section>
+
+<section id="validation">
+  <p class="eyebrow">{'04 / Validation, comparison, and correction boundaries'}</p>
+  <h2>{'Compare cycles and keep open findings visible'}</h2>
+  <p>
+    {
+      'I compared recurring audit cycles so reviewers could distinguish corrected findings from unresolved issues and newly detected regressions. Open findings remained visible instead of disappearing when a new report was generated.'
+    }
+  </p>
+  <p>
+    {
+      'I classified and packaged exceptions for the owners able to interpret or correct them. Ambiguous findings could be escalated for clarification, while the audit trail retained the rule result, exception detail, and follow-up status.'
+    }
+  </p>
+  <p>
+    {
+      'The framework used read-oriented access and did not write corrections back to PostgreSQL. Detecting an exception did not prove that the source had been corrected; relevant source owners retained remediation responsibility.'
+    }
+  </p>
+</section>
+
+<section id="outcome">
+  <p class="eyebrow">{'05 / Supported outcome'}</p>
+  <h2>{'An approved operating protocol and a framework in continued use'}</h2>
+  <p>
+    {
+      'The operating protocol was formally approved and put into use. The framework was deployed across multiple core operational datasets, incorporated into recurring audits, and transitioned to Data Engineering for continued execution.'
+    }
+  </p>
+  <p>
+    {
+      'When I left LifeBank, the recurring framework and operating process remained active. They gave the Data Science team documented visibility into data-quality status, exceptions, cycle changes, remediation progress, and whether data was suitable for analysis, while source owners retained responsibility for correction.'
+    }
+  </p>
+</section>
+
+<Scope>
+  <ul>
+    <li>
+      {
+        'I designed and implemented the framework and authored the protocol. Data Engineering owned ingestion and later recurring execution; relevant owners retained authority over field definitions and source correction.'
+      }
+    </li>
+    <li>
+      {
+        'The framework detected and documented exceptions but did not autonomously repair data. No PostgreSQL write or mutation behavior is claimed.'
+      }
+    </li>
+    <li>
+      {
+        'Recurring monitoring provided visibility but did not guarantee that every dataset was clean or every exception was corrected. This case does not claim organization-wide adoption, real-time monitoring, enterprise-platform status, quantified benefit, or complete remediation.'
+      }
+    </li>
+    <li>
+      {
+        'Employer code, data, fields, rules, thresholds, reports, screenshots, credentials, infrastructure, internal schedules, and exact counts remain private. The independent illustration contains none of those materials.'
+      }
+    </li>
+  </ul>
+</Scope>
+
+<section id="tools">
+  <p class="eyebrow">{'06 / Supporting capabilities'}</p>
+  <h2>{'Tools and methods'}</h2>
+  <p>
+    {
+      'R, R Markdown, PostgreSQL, DBI/RPostgres-style read-oriented access, declarative validation rules, reusable checking patterns, data profiling, missing-column handling, exception extraction, health scorecards, visual diagnostics, Excel-based reconciliation, cycle comparison, issue ownership and escalation, operating-protocol documentation, and knowledge transfer.'
+    }
+  </p>
+  <div class="tags">
+    <span>{'R and R Markdown'}</span>
+    <span>{'PostgreSQL validation'}</span>
+    <span>{'Declarative data-quality rules'}</span>
+    <span>{'Exception and remediation reporting'}</span>
+    <span>{'Cycle comparison'}</span>
+    <span>{'Data governance and operating design'}</span>
+  </div>
+</section>
+
+  <section id="evidence-index">
+    <p class="eyebrow">{'07 / Evidence index'}</p>
+    <h2>{'Review the independent evidence'}</h2>
+    <ol class="evidence-index">
+      <li>
+        <span class="number">{'01'}</span>
+        <div>
+          <a href="#quality-illustration">{'Recurring audit and remediation lifecycle'}</a>
+          <small>{'Independent illustration'}</small>
+        </div>
+      </li>
+      <li>
+        <span class="number">{'02'}</span>
+        <div>
+          <a href="#quality-synthetic-example">{'Synthetic R audit-cycle example'}</a>
+          <small>{'Independent technical example · Synthetic data'}</small>
+        </div>
+      </li>
+    </ol>
+  </section>
+</div>

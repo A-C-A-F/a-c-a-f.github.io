@@ -1,0 +1,18 @@
+{
+  "units": 10,
+  "saleReceiptPerUnit": 8,
+  "saleCostPerUnit": 1,
+  "disposalCostPerUnit": 2,
+  "liquidationReceiptPerUnit": 3,
+  "liquidationCostPerUnit": 1,
+  "scenarios": [
+    {
+      "label": "Scenario Alpha",
+      "soldUnits": 8
+    },
+    {
+      "label": "Scenario Beta",
+      "soldUnits": 3
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+<figure>
+  <p class="preview-title">From inputs to an explained action</p>
+  <ol class="inventory-process">
+    <li>Source inputs</li>
+    <li>Standardize and validate</li>
+    <li>Compare three scenarios</li>
+    <li>Review outcomes</li>
+    <li>Explain the action</li>
+    <li>Business review</li>
+  </ol>
+  <figcaption>
+    Original conceptual illustration. No employer data, formulas, or decision rules are
+    reproduced. A calculated preference remains subject to business review.
+  </figcaption>
+</figure>
+<style>
+  .inventory-process {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .inventory-process li {
+    margin: 0;
+    border: 1px solid var(--line);
+    padding: 10px;
+    font-size: 15px;
+    background: var(--paper, #faf9f6);
+  }
+  @media (max-width: 480px) {
+    .inventory-process {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

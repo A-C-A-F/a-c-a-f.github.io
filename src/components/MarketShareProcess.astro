@@ -1,0 +1,118 @@
+<figure aria-labelledby="process-caption">
+  <ol class="lifecycle">
+    <li>
+      <span class="phase">Foundation</span>
+      <strong>Validate sources and establish comparison grain</strong>
+      <small>Confirm what each record represents before combining evidence.</small>
+    </li>
+    <li>
+      <span class="phase">Preparation</span>
+      <strong>Profile and normalize evidence</strong>
+      <small>Expose missing, inconsistent, or ambiguous inputs for review.</small>
+    </li>
+    <li>
+      <span class="phase">Governance</span>
+      <strong>Apply governed rules and readiness decisions</strong>
+      <small>Keep proposed treatments separate from accepted business rules.</small>
+    </li>
+    <li>
+      <span class="phase">Analysis</span>
+      <strong>Produce controlled analysis outputs</strong>
+      <small>Allow results to proceed, remain in review, or stop safely.</small>
+    </li>
+    <li>
+      <span class="phase">Assurance</span>
+      <strong>Reconcile results and review exceptions</strong>
+      <small>Connect summary conclusions to checks and unresolved evidence.</small>
+    </li>
+    <li>
+      <span class="phase">Handoff</span>
+      <strong>Package results for stakeholder use</strong>
+      <small>Provide reviewable outputs, operating guidance, and clear limits.</small>
+    </li>
+  </ol>
+  <figcaption id="process-caption" class="caption">
+    An independently designed, data-free lifecycle showing how analytical evidence can
+    move from source review to governed stakeholder use. It does not depict the employer
+    application, architecture, rules, or results.
+  </figcaption>
+</figure>
+<style>
+  .lifecycle {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 16px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px 18px;
+    counter-reset: lifecycle;
+  }
+  .lifecycle li {
+    position: relative;
+    text-align: left;
+    padding: 18px;
+    min-width: 0;
+    counter-increment: lifecycle;
+  }
+  .lifecycle li::before {
+    content: counter(lifecycle, decimal-leading-zero);
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 14px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: white;
+    font-family: Consolas, monospace;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .lifecycle li:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    top: 28px;
+    right: -14px;
+    color: var(--teal);
+    font-weight: 700;
+  }
+  @media (min-width: 701px) {
+    .lifecycle li:nth-child(3)::after {
+      content: none;
+    }
+  }
+  .phase {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--muted);
+    font-family: Consolas, monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .lifecycle strong {
+    display: block;
+    margin-bottom: 7px;
+  }
+  .lifecycle small {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  @media (max-width: 700px) {
+    .lifecycle {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .lifecycle li {
+      padding: 16px;
+    }
+    .lifecycle li:not(:last-child)::after {
+      content: '↓';
+      top: auto;
+      right: auto;
+      bottom: -22px;
+      left: 50%;
+    }
+  }
+</style>

@@ -1,0 +1,172 @@
+<figure class="marketplace-flow" aria-labelledby="marketplace-flow-caption">
+  <p class="flow-text-alternative">
+    Purchase lines, contextual mappings, and engagement events begin at different levels
+    of detail. Engagement is aggregated first; mapping, totals, and unmatched records are
+    then checked before the reconciled dataset is used for BI reporting. Exceptions remain
+    visible for review.
+  </p>
+  <ol class="flow-stages">
+    <li>
+      <span class="stage-type">Transaction detail</span>
+      <strong>Purchase and line-item inputs</strong>
+      <small>Start with the records that define the reporting base.</small>
+    </li>
+    <li>
+      <span class="stage-type">Reference context</span>
+      <strong>Posting and customer context</strong>
+      <small>Add meaning while retaining missing or uncertain relationships.</small>
+    </li>
+    <li>
+      <span class="stage-type">Aggregated events</span>
+      <strong>Separately aggregated engagement</strong>
+      <small>Summarize clicks and applications before joining them to detail.</small>
+    </li>
+    <li>
+      <span class="stage-type">Controls</span>
+      <strong>Grain and relationship controls</strong>
+      <small>Check keys, mappings, one-sided activity, and unmatched records.</small>
+    </li>
+    <li>
+      <span class="stage-type">Reviewable output</span>
+      <strong>Reconciled reporting dataset</strong>
+      <small>Keep intended reporting rows and non-additive measures explicit.</small>
+    </li>
+    <li>
+      <span class="stage-type">BI and review</span>
+      <strong>BI reporting and documented exceptions</strong>
+      <small>Send reporting output and its exception trail forward together.</small>
+    </li>
+  </ol>
+  <div class="validation-track">
+    <strong>Validation travels with the output</strong>
+    <ul>
+      <li>Keys</li>
+      <li>Totals</li>
+      <li>Exceptions</li>
+    </ul>
+  </div>
+  <figcaption id="marketplace-flow-caption" class="caption">
+    A generic reporting flow showing how sources at different levels of detail can be
+    prepared, aggregated, reconciled, and accompanied by visible exceptions before BI
+    reporting.
+  </figcaption>
+</figure>
+
+<style>
+  .flow-text-alternative {
+    margin: 18px 0 0;
+  }
+  .flow-stages {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px 18px;
+    margin: 24px 0 20px;
+    padding: 0;
+    list-style: none;
+    counter-reset: stage;
+  }
+  .flow-stages li {
+    position: relative;
+    min-width: 0;
+    padding: 17px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--paper);
+    counter-increment: stage;
+  }
+  .flow-stages li::before {
+    content: counter(stage, decimal-leading-zero);
+    display: inline-grid;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 13px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--teal);
+    color: white;
+    font:
+      700 12px/1 Consolas,
+      monospace;
+  }
+  .flow-stages li:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    top: 27px;
+    right: -15px;
+    z-index: 1;
+    color: var(--teal);
+    font-weight: 700;
+  }
+  .flow-stages li:nth-child(3)::after {
+    content: none;
+  }
+  .stage-type {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--muted);
+    font:
+      700 11px/1.4 Consolas,
+      monospace;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  .flow-stages strong,
+  .flow-stages small {
+    display: block;
+  }
+  .flow-stages strong {
+    margin-bottom: 7px;
+  }
+  .flow-stages small {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .validation-track {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 15px 17px;
+    border-left: 3px solid var(--teal);
+    background: var(--paper);
+  }
+  .validation-track ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .validation-track li {
+    padding: 5px 9px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    font:
+      700 12px/1.4 Consolas,
+      monospace;
+  }
+  .marketplace-flow figcaption {
+    margin-top: 14px;
+  }
+  @media (max-width: 700px) {
+    .flow-stages {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .flow-stages li:not(:last-child)::after,
+    .flow-stages li:nth-child(3)::after {
+      content: '↓';
+      top: auto;
+      right: auto;
+      bottom: -22px;
+      left: 50%;
+    }
+    .validation-track {
+      display: block;
+    }
+    .validation-track ul {
+      margin-top: 11px;
+    }
+  }
+</style>

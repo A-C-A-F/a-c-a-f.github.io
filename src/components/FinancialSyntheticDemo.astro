@@ -1,0 +1,152 @@
+---
+import ResponsiveTable from './ResponsiveTable.astro';
+import rSource from '../examples/code/financial-practice-trials.R?raw';
+import presentation from '../data/financial-practice-trials.json';
+---
+
+<div class="trial-demo">
+  <h3>Inspect a small fictional practice-trial analysis</h3>
+  <p class="disclosure">
+    Created independently for this portfolio using fictional data. It does not reproduce
+    employer code, data, fields, rules, coefficients, model results, reports or system
+    architecture. It demonstrates population preparation and association analysis, not a
+    historical employer model or its performance.
+  </p>
+  <p>
+    The intended unit is one observation per fictional practice trial. A separate group
+    lookup must match each trial once. Completed means a recorded outcome of 1; 0 means
+    not completed. A missing outcome excludes a trial from both summaries and modeling; a
+    missing preparation measure excludes it only from modeling. Nothing is imputed.
+  </p>
+  <p>
+    The descriptive comparison uses all trials with recorded outcomes. The model uses only
+    trials with both outcome and preparation values. Practice group is context for the
+    descriptive comparison, not a model predictor.
+  </p>
+  <p class="caption">
+    On small screens, scroll the input table sideways to inspect every field.
+  </p>
+  <div class="trial-tables">
+    {presentation.tables.map((table) => (
+      <div id={table.id}>
+        <ResponsiveTable label={table.caption + '; scroll horizontally if needed'}>
+          <table
+            class={
+              table.id === 'trial-input'
+                ? 'wide-table'
+                : table.headers.length > 3
+                  ? 'mobile-records'
+                  : 'narrow-table'
+            }
+            role="table"
+          >
+            <caption>{table.caption}</caption>
+            <thead>
+              <tr>
+                {table.headers.map((header) => (
+                  <th scope="col">{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {table.rows.map((row) => (
+                <tr>
+                  {row.map((value, index) => (
+                    <td data-label={table.headers[index]}>{value}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </ResponsiveTable>
+      </div>
+    ))}
+  </div>
+  <div class="trial-boundary">
+    <p>
+      <strong>Interpret the association within its population.</strong> The synthetic odds
+      ratio compares modeled completion odds for an additional preparation unit, assuming
+      a linear relationship with log odds. It is not a change in probability. This tiny
+      invented dataset is not evidence about real practice or group differences.
+    </p>
+    <p>
+      An association in this fictional observational example does not establish causation
+      or production predictive performance. Passing these checks does not prove that a
+      model is universally valid. The example analyzes and reports results without
+      modifying its source records. Its checks are not claims about checks performed in
+      the historical professional studies.
+    </p>
+  </div>
+  <details id="trial-code">
+    <summary>Create, analyze and verify fictional trials · view base R source</summary>
+    <p class="caption">
+      Self-contained base R; no packages, database or network connection. Run the complete
+      script to print the presentation tables as JSON. An optional output filename saves
+      the same JSON for the static page. Negative fixtures must be rejected for the script
+      to finish successfully.
+    </p>
+    <pre
+      tabindex="0"
+      aria-label="Complete fictional practice-trial R source"
+    ><code>{rSource}</code></pre>
+  </details>
+</div>
+
+<style>
+  .trial-demo {
+    min-width: 0;
+  }
+  .disclosure {
+    border-left: 3px solid var(--teal);
+    padding-left: 14px;
+  }
+  .trial-tables {
+    display: grid;
+    gap: 22px;
+    margin-block: 24px;
+    min-width: 0;
+  }
+  .trial-tables > div {
+    min-width: 0;
+  }
+  .wide-table {
+    min-width: 36rem;
+  }
+  .wide-table caption {
+    max-width: 17rem;
+  }
+  .narrow-table {
+    table-layout: fixed;
+    width: 100%;
+  }
+  th,
+  td {
+    overflow-wrap: anywhere;
+  }
+  .trial-boundary {
+    padding: 18px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+  }
+  .trial-boundary p:last-child {
+    margin-bottom: 0;
+  }
+  details {
+    min-width: 0;
+    margin-top: 24px;
+    border-block: 1px solid var(--line);
+  }
+  summary {
+    padding: 14px 4px;
+    min-height: 48px;
+    cursor: pointer;
+    color: var(--teal);
+    font-weight: 600;
+  }
+  pre {
+    max-width: 100%;
+    max-height: 32rem;
+    overflow: auto;
+    font-size: 14px;
+  }
+</style>

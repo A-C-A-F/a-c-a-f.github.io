@@ -1,0 +1,196 @@
+---
+{
+  'title': 'Building a Governed Market Share Intelligence Product',
+  'description': 'I turned a manually validated market-share method into a governed Python and SQL analytical product with configurable rules, readiness and validation controls, a Streamlit review app, and tested handoff materials.',
+  'context': "E-commerce analytics \u00b7 Sunco Lighting",
+  'order': 0,
+  'featured': true,
+  'tags': ['Analytics automation', 'Data quality', 'Python / SQL'],
+  'detailed': true,
+  'linkLabel': 'Read the market share intelligence case',
+  'opening':
+    {
+      'subtitle': 'Evolving a manually validated market-share method into a governed analytical product with reviewable evidence and controlled outcomes.',
+      'contribution': 'Owned the methodology, Python and SQL implementation, validation design, Streamlit application, release testing, and handoff preparation.',
+      'outcome': 'Approved Streamlit application awaiting planned deployment; transferred Codex Skill now used for stakeholder decision support.',
+      'evidence': 'Professional narrative; independent governed-lifecycle illustration without employer data.',
+    },
+}
+---
+
+import EvidencePanel from '../../components/EvidencePanel.astro';
+import MarketShareProcess from '../../components/MarketShareProcess.astro';
+import Scope from '../../components/Scope.astro';
+
+<div>
+  <section id="context">
+    <p class="eyebrow">{'01 / Context'}</p>
+    <h2>{'A market comparison is only as sound as its inputs'}</h2>
+    <p class="lead">
+      {
+        'The business needed a defensible way to compare company participation with competitor sales and identify product gaps. The analysis depended on warehouse sales, normalized classifications, product relationships, and attributes whose grain and meaning could not simply be assumed.'
+      }
+    </p>
+    <p>
+      {
+        'Repeated product records could multiply totals, ownership labels could be uncertain, and missing or inconsistent attributes could put unlike products in the same comparison. The method therefore had to validate the source relationships and keep incomplete evidence visible before presenting market-share or opportunity results.'
+      }
+    </p>
+    <div class="role-note">
+      <p>
+        <strong>{'My contribution.'}</strong>
+        {
+          ' I owned the analytical methodology, Python and SQL implementation, validation design, Streamlit application, release testing, and handoff preparation. I also designed the technical safeguards and proposed rule treatments; stakeholders confirmed ambiguous product meanings and business-rule acceptance where judgment was required.'
+        }
+      </p>
+    </div>
+  </section>
+  <section id="approach">
+    <p class="eyebrow">{'02 / Analytical approach'}</p>
+    <h2>{'Prove the method manually, then make it repeatable'}</h2>
+    <p>
+      {
+        'The first phase established the analytical method. I used targeted product reviews to define the comparison grain, remove duplicate competitor records before aggregation, reconcile selected source and output totals, and document attributes that were missing, malformed, or open to interpretation.'
+      }
+    </p>
+    <p>
+      {
+        'I then converted the validated steps into a configurable Python and SQL workflow. It profiled source coverage and normalized evidence, applied reviewed comparison rules, generated controlled analysis outputs, and preserved review questions instead of turning proposed treatments into accepted business rules.'
+      }
+    </p>
+    <ol>
+      <li>
+        <strong>{'Data readiness.'}</strong>
+        {
+          ' Check whether the selected population, reporting periods, sales coverage, parsing, and classification are sufficient to begin.'
+        }
+      </li>
+      <li>
+        <strong>{'Rule readiness.'}</strong>
+        {
+          ' Distinguish active rules from proposals and keep uncertain product meaning outside a final result until the responsible stakeholders review it.'
+        }
+      </li>
+      <li>
+        <strong>{'Output validation.'}</strong>
+        {
+          ' Reconcile source and output totals, inspect assignments and exceptions, and prevent an incomplete or failed run from replacing an accepted result.'
+        }
+      </li>
+    </ol>
+    <p>
+      {
+        'These controls allowed an analysis to remain a clearly identified draft, stop when no safe comparison was available, or move forward as final when the evidence and rule authority were sufficient. Technical corrections followed controlled checks; business acceptance remained a human decision.'
+      }
+    </p>
+    <h3>{'A review application for business and technical users'}</h3>
+    <p>
+      {
+        'I built a five-page Streamlit application that brought run status, market-share summaries, opportunity review, product drill-down, and validation evidence into one review experience. Filters, traceable definitions, exception views, and exports helped reviewers move from a summary result to the evidence behind it without changing the underlying analytical rules.'
+      }
+    </p>
+  </section>
+  <section id="example">
+    <p class="eyebrow">{'03 / Independent illustration'}</p>
+    <h2>{'A governed path from source evidence to stakeholder use'}</h2>
+    <p>
+      {
+        'This independent illustration summarizes a transferable analytical lifecycle. It is separate from the professional implementation and does not show the employer application, architecture, data, or rule configuration.'
+      }
+    </p>
+    <EvidencePanel id="review-illustration" kind="Independent illustration">
+      <p id="preparation-note" class="caption">
+        {
+          'Created for this portfolio with AI-assisted development. It does not reproduce employer workflows, rules, data, or system architecture.'
+        }
+      </p>
+      <h3>{'Validate, govern, review, and package'}</h3>
+      <MarketShareProcess />
+    </EvidencePanel>
+  </section>
+  <section id="validation">
+    <p class="eyebrow">{'04 / Quality controls'}</p>
+    <h2>{'Protect the result as well as the calculation'}</h2>
+    <p>
+      {
+        'Validation combined targeted product review, source and output reconciliation, assignment and exception checks, and traceable review evidence. Protected execution used isolated work areas and release checks so an incomplete or failed run could not silently replace a prior accepted result.'
+      }
+    </p>
+    <p>
+      {
+        'I tested the analytical workflow, application behavior, installation, failure handling, and representative review states through automated checks, browser review, and clean-copy release testing. One controlled read-only warehouse-backed run validated the end-to-end path for its selected target; it did not establish that every product target or operating condition had been validated.'
+      }
+    </p>
+  </section>
+  <section id="outcome">
+    <p class="eyebrow">{'05 / Professional outcome'}</p>
+    <h2>{'A tested application and a Skill in active use'}</h2>
+    <p>
+      {
+        'The work produced a completed and release-tested local analytical workflow, a five-page Streamlit review application, configurable governance controls, and documented handoff materials. The Streamlit application was completed, tested, reviewed, and approved, with deployment planned.'
+      }
+    </p>
+    <p>
+      {
+        'I packaged, release-tested, and transferred a standalone Codex Skill that stakeholders now use as part of their decision-support workflow. That confirmed Skill use is separate from the application’s status and does not imply that the application is currently in use.'
+      }
+    </p>
+  </section>
+  <Scope>
+    <ul>
+      <li>
+        {
+          'The Streamlit application was completed, tested, reviewed, and approved, with deployment planned; this case presents the tested local release rather than a live production system.'
+        }
+      </li>
+      <li>
+        {
+          'The standalone Codex Skill was transferred and is used by stakeholders for decision support. This does not imply that the application itself is already in use.'
+        }
+      </li>
+      <li>
+        {
+          'Individual analyses could remain under review, and stakeholders retained final authority over ambiguous product meaning and business-rule acceptance. Upstream data platforms were dependencies, not systems I owned.'
+        }
+      </li>
+      <li>
+        {
+          'The public case uses a data-free independent illustration and does not disclose employer code, data, configuration, product identifiers, internal rules, credentials, or private records.'
+        }
+      </li>
+    </ul>
+  </Scope>
+  <section id="tools">
+    <p class="eyebrow">{'06 / Supporting capabilities'}</p>
+    <h2>{'Tools and methods'}</h2>
+    <p>
+      {
+        'Python, SQL, Excel, Amazon Redshift, and Streamlit supported source preparation, product comparison, automation, review, and release testing. Data profiling and normalization, configurable rule governance, readiness controls, reconciliation, protected execution, and operating documentation connected the analysis to stakeholder review.'
+      }
+    </p>
+    <div class="tags">
+      <span>{'Analytical methodology'}</span>
+      <span>{'Python / SQL / Excel'}</span>
+      <span>{'Amazon Redshift'}</span>
+      <span>{'Streamlit'}</span>
+      <span>{'Data and rule governance'}</span>
+      <span>{'Validation and reconciliation'}</span>
+      <span>{'Release testing'}</span>
+      <span>{'Codex Skill'}</span>
+      <span>{'Stakeholder decision support'}</span>
+    </div>
+  </section>
+  <section id="evidence-index">
+    <p class="eyebrow">{'07 / Evidence index'}</p>
+    <h2>{'Evidence presented in this case'}</h2>
+    <ol class="evidence-index">
+      <li>
+        <span class="number">{'01'}</span>
+        <div>
+          <a href="#review-illustration">{'Governed analytical lifecycle'}</a>
+          <small>{'Independent illustration'}</small>
+        </div>
+      </li>
+    </ol>
+  </section>
+</div>
