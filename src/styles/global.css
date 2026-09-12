@@ -1179,9 +1179,10 @@ pre code {
 }
 @media (max-width: 700px) {
   .header-inner {
+    --mobile-menu-width: 6rem;
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 77px;
+    grid-template-columns: minmax(0, 1fr) var(--mobile-menu-width);
     column-gap: 12px;
     align-items: start;
   }
@@ -1197,6 +1198,8 @@ pre code {
     position: absolute;
     top: 18px;
     right: 22px;
+    width: var(--mobile-menu-width);
+    flex-wrap: wrap;
   }
   .mobile-nav nav {
     width: 100%;

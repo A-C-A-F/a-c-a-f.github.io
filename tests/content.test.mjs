@@ -1541,13 +1541,13 @@ test('Aged Inventory presents approved recurring use, qualified ownership and in
 test('Four completed case HTML baselines preserve authorized Learning navigation and accessible grouping', () => {
   const expected = {
     'competitive-intelligence':
-      '05b8bd9ba2ec19f5ce735fb2ed92c28f0df4f6e5d00068f989dbbc31d2e5c6d3',
+      '5b5416c86b21d5e3c301f64653b7de590a820047e053744a5460a3bf88e70e57',
     'data-quality-process':
-      'c68bd84c34d56c0da8312ca2ef6470742c2ae9bc0fe47c49c0220b1044e72764',
+      'cb074355f8924bc9d504d4ceacd790e5196c6d71e0e30184ac7c4f8881494479',
     'financial-behavior':
-      '22d75ce67c48fbc7f0f77b6541f9c862a78d8b602627184525675f769831708b',
+      '0c7a4de067e79c29b11d19a1d381514853f2f84e732bd6ab9416a4478406661f',
     'market-share-workflow':
-      '711cb91c5ae4dd7c432f3d1cf04a00f17ab1f58b488abd32a80ca43505d9beb8',
+      '30aa66c330937d25a1530b0d6636c9dedef9137e2c429c3b8b366b0f36c37cfc',
   };
   for (const [slug, hash] of Object.entries(expected))
     assert.equal(

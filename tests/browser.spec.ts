@@ -232,7 +232,7 @@ test('mobile disclosure retains its box and does not overlap the brand', async (
   const context = await browser.newContext({ javaScriptEnabled: true });
   const page = await context.newPage();
   const results = [];
-  for (const width of [320, 390]) {
+  for (const width of [320, 360, 390, 414]) {
     await page.setViewportSize({ width, height: 844 });
     await page.goto('http://127.0.0.1:4321/work/marketplace-reporting/');
     const menu = page.locator('.mobile-nav');
@@ -240,6 +240,35 @@ test('mobile disclosure retains its box and does not overlap the brand', async (
     const brand = await page.locator('.brand').boundingBox();
     const summary = await menu.locator('summary').boundingBox();
     expect(brand!.x + brand!.width).toBeLessThanOrEqual(summary!.x);
+    await menu.locator('summary').focus();
+    await page.keyboard.press('Space');
+    await expect(menu).toHaveAttribute('open', '');
+    const expandedSummary = await menu.locator('summary').boundingBox();
+    expect(brand!.x + brand!.width).toBeLessThanOrEqual(expandedSummary!.x);
+    await page.evaluate(() => {
+      const elements = [...document.querySelectorAll<HTMLElement>('.site-header *')];
+      const sizes = elements.map((e) => parseFloat(getComputedStyle(e).fontSize));
+      elements.forEach((e, i) => (e.style.fontSize = `${sizes[i] * 2}px`));
+    });
+    for (const open of [true, false]) {
+      if (!open) {
+        await menu.locator('summary').focus();
+        await page.keyboard.press('Space');
+        await expect(menu).not.toHaveAttribute('open', '');
+      }
+      const enlargedBrand = await page.locator('.brand').boundingBox();
+      const enlargedSummary = await menu.locator('summary').boundingBox();
+      expect(enlargedBrand!.x + enlargedBrand!.width).toBeLessThanOrEqual(
+        enlargedSummary!.x,
+      );
+      expect(
+        await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+      ).toBe(true);
+    }
+    await page.evaluate(() => {
+      for (const element of document.querySelectorAll<HTMLElement>('.site-header *'))
+        element.style.removeProperty('font-size');
+    });
     await menu.locator('summary').focus();
     await page.keyboard.press('Space');
     await expect(menu).toHaveAttribute('open', '');
