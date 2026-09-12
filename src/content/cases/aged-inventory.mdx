@@ -1,0 +1,210 @@
+---
+{
+  'title': 'Comparing Options for Aged Inventory',
+  'description': 'I built an approved Excel decision model used in recurring monthly aged-inventory reviews, connecting sales, inventory, cost, fee, and product inputs to compare removal, discounted sell-through, and liquidation with validation-gated recommendations.',
+  'context': "Inventory decision support \u00b7 Sunco Lighting",
+  'order': 2,
+  'featured': true,
+  'tags': ['Scenario analysis', 'Decision support', 'Excel'],
+  'detailed': true,
+  'linkLabel': 'Read the aged-inventory case',
+  'opening':
+    {
+      'subtitle': 'An approved Excel decision model for recurring monthly reviews, combining source preparation, scenario economics, validation gates, and explainable recommendations.',
+      'contribution': 'Designed and built the core analytical decision model within an existing workbook, including its principal calculation, validation, scenario-comparison, and explainable recommendation logic.',
+      'outcome': 'Approved for use and incorporated into recurring monthly aged-inventory reviews; recommendations provided a structured financial basis while stakeholders retained final operational authority.',
+      'evidence': 'Professional narrative; an independent process illustration; and a separate static technical example using fictional data and calculations.',
+    },
+}
+---
+
+import EvidencePanel from '../../components/EvidencePanel.astro';
+import AgedInventoryLifecycle from '../../components/AgedInventoryLifecycle.astro';
+import InventoryExample from '../../components/InventoryExample.astro';
+import Scope from '../../components/Scope.astro';
+
+<div>
+  <section id="context">
+    <p class="eyebrow">01 / Context</p>
+    <h2>Give monthly inventory reviews a comparable financial basis</h2>
+    <p>
+      {
+        'The existing tracker provided useful profit and storage context but did not clearly compare the practical actions available for Amazon FBA inventory exposed to aged-inventory charges. The monthly review needed a transparent financial basis for considering removal or disposal, continued sell-through with a discount, and liquidation—while keeping assumptions, incomplete inputs, and operational judgment visible.'
+      }
+    </p>
+    <h3>Contribution and ownership</h3>
+    <div class="role-note">
+      <p>
+        {
+          'I designed and built the core analytical decision model within an existing workbook. I connected the required product, inventory, sales, cost, fee, classification, size, weight, and historical-price inputs and implemented the principal calculation, scenario-comparison, validation, recommendation, and explanation layers.'
+        }
+      </p>
+    </div>
+    <p>
+      {
+        'The original workbook shell and upstream source systems were not mine. Selected assumptions and formula corrections were reviewed collaboratively, and stakeholders retained authority over business definitions and final actions.'
+      }
+    </p>
+  </section>
+  <section id="approach">
+    <p class="eyebrow">02 / Analytical approach</p>
+    <h2>Build a traceable path from source inputs to business review</h2>
+    <h3>Define and connect the decision population</h3>
+    <p>
+      {
+        'I tested which sales population was appropriate for an FBA aged-inventory review and used a filtered FBA view for the model. Identifier-based matching connected each modeled item to the product, inventory, sales, cost, fee, classification, size, weight, and historical-price information required by the scenario calculations.'
+      }
+    </p>
+    <h3>Normalize inputs before applying business logic</h3>
+    <p>
+      {
+        'I standardized relevant product classifications and measurement units and used size and weight inputs for fee calculations. Missing or unrecognized values remained visible rather than being silently assigned a result.'
+      }
+    </p>
+    <h3>Measure movement and possible future exposure</h3>
+    <p>
+      {
+        'Recent FBA sales were aggregated to estimate sales velocity and inventory coverage. The sell-through path used a documented working movement assumption to project monthly units, time to clear, inventory runoff, and possible future aged-inventory fee exposure. The discount assumption changed price-dependent economics; the separate movement assumption estimated sell-through. This was assumption-based scenario analysis, not a demand forecast, causal price response, or formal price-elasticity model.'
+      }
+    </p>
+    <h3>Model three separate financial paths</h3>
+    <p>
+      {
+        'I built separate financial paths for removal or disposal, discounted sell-through, and liquidation. The removal path combined direct removal cost with relevant unrecovered costs. The sell-through path recalculated selected unit economics at a discounted price and projected the financial effect of clearing the aged quantity over time. The liquidation path estimated recovery after applicable deductions and relevant unrecovered costs.'
+      }
+    </p>
+    <h3>Compare the result and explain the recommendation</h3>
+    <p>
+      {
+        'The workbook compared all three outcomes and selected the strongest financial result. If every option was negative, it selected the least-negative modeled result rather than presenting an unprofitable path as a gain. It then translated the result into a proposed action and a plain-English explanation.'
+      }
+    </p>
+    <EvidencePanel id="inventory-lifecycle" kind="Independent illustration">
+      <p class="caption" id="inventory-lifecycle-disclosure">
+        {
+          'Created independently for this portfolio. It explains a general decision-model lifecycle and does not reproduce employer data, formulas, workbook design, rules, or system architecture.'
+        }
+      </p>
+      <AgedInventoryLifecycle />
+    </EvidencePanel>
+  </section>
+  <section id="example">
+    <p class="eyebrow">03 / Independent technical example</p>
+    <h2>See how one assumption changes the comparison</h2>
+    <p>
+      {
+        'The professional case above concerns the logic and formulas I built within an existing workbook. The separate static example below uses new, deliberately simple calculations and invented assumptions to explain sensitivity. It is not an extract or reconstruction of that workbook.'
+      }
+    </p>
+    <EvidencePanel
+      id="inventory-scenarios"
+      kind="Independent technical example · Synthetic data"
+    >
+      <p id="preparation-note" class="caption">
+        {
+          'Created for this portfolio with AI-assisted development using synthetic data. It does not reproduce employer formulas, data, assumptions, business rules, or workbook design.'
+        }
+      </p>
+      <InventoryExample />
+    </EvidencePanel>
+  </section>
+  <section id="validation">
+    <p class="eyebrow">04 / Validation and review</p>
+    <h2>Hold incomplete records and unsettled meanings for review</h2>
+    <p>
+      {
+        'Recommendation logic was gated by checks for required inputs, usable classifications, available fee outputs, and complete scenario results. Rows with missing or unsuitable prerequisites were held for review instead of receiving an unexplained action. These controls made important gaps visible; they did not independently guarantee that every upstream value or business assumption was correct.'
+      }
+    </p>
+    <p>
+      {
+        'I documented actual formula behavior and kept unresolved interpretations visible. This separated what the workbook calculated from business meanings that still required responsible-owner review.'
+      }
+    </p>
+    <p>
+      {
+        'The separate portfolio example can be checked by hand: sold units plus disposed units equal the starting lot, each option accounts for the full lot, and the same cash-unit convention is used throughout. These checks describe the new example, not the employer workbook.'
+      }
+    </p>
+  </section>
+  <section id="outcome">
+    <p class="eyebrow">05 / Supported outcome</p>
+    <h2>An approved model used in recurring monthly reviews</h2>
+    <p>
+      {
+        'The completed Excel decision model was approved for use and incorporated into recurring monthly aged-inventory reviews. Its recommendations provided a structured financial basis for decisions, while stakeholders retained authority to apply additional operational context.'
+      }
+    </p>
+    <h3>Human review remained part of the operating process</h3>
+    <p>
+      {
+        'A recommendation was a reviewable financial preference, not an automatic business decision. Stakeholders sometimes selected a different action when they had product-specific or operational information that the model did not contain. That human review preserved decision authority and allowed the financial comparison to be used alongside operational eligibility, replenishment constraints, and current business context.'
+      }
+    </p>
+    <p>No quantified financial or operational impact is claimed.</p>
+  </section>
+  <Scope>
+    <ul>
+      <li>
+        The method was approved for use; that does not mean every individual
+        recommendation was approved or implemented.
+      </li>
+      <li>
+        Operational eligibility and final action remained with stakeholders, who could
+        apply information outside the workbook.
+      </li>
+      <li>
+        Sell-through and future-fee estimates were assumption-based scenarios. The
+        discount assumption and working movement assumption were separate, and no causal
+        demand or forecasting-accuracy claim is made.
+      </li>
+      <li>
+        No savings, inventory reduction, revenue improvement, decision-quality
+        improvement, or other quantified impact is claimed.
+      </li>
+      <li>
+        Employer formulas, source names, records, identifiers, rates, thresholds, workbook
+        screens, and confidential rules remain private. Portfolio evidence is
+        independently created.
+      </li>
+    </ul>
+  </Scope>
+  <section id="tools">
+    <p class="eyebrow">06 / Supporting capabilities</p>
+    <h2>Tools and methods</h2>
+    <p>
+      {
+        'Microsoft Excel, cross-sheet formula engineering, multi-source data preparation, identifier matching, classification, size, unit, and weight normalization, sales-velocity and inventory-coverage analysis, cost, fee, loss, recovery, and aged-exposure modeling, assumption-based scenario analysis, validation gates, explainable recommendation logic, assumption documentation, and stakeholder review supported this decision model.'
+      }
+    </p>
+    <div class="tags">
+      <span>Excel decision modeling</span>
+      <span>Inventory economics</span>
+      <span>Scenario analysis</span>
+      <span>Formula engineering</span>
+      <span>Data validation</span>
+      <span>Explainable recommendations</span>
+      <span>Stakeholder decision support</span>
+    </div>
+  </section>
+  <section id="evidence-index">
+    <p class="eyebrow">07 / Evidence index</p>
+    <h2>Review the independent evidence</h2>
+    <ol class="evidence-index">
+      <li>
+        <span class="number">01</span>
+        <div>
+          <a href="#inventory-lifecycle">Decision-model lifecycle</a>
+          <small>Independent illustration</small>
+        </div>
+      </li>
+      <li>
+        <span class="number">02</span>
+        <div>
+          <a href="#inventory-scenarios">Two static inventory scenarios</a>
+          <small>Independent technical example · Synthetic data</small>
+        </div>
+      </li>
+    </ol>
+  </section>
+</div>

@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import CasePreview from './CasePreview.astro';
+import previews from '../data/previews.json';
+import MarketSharePreview from './previews/MarketSharePreview.astro';
+import MarketplacePreview from './previews/MarketplacePreview.astro';
+import InventoryPreview from './previews/InventoryPreview.astro';
+const previewComponents: Record<string, typeof MarketSharePreview> = {
+  'market-share-workflow': MarketSharePreview,
+  'marketplace-reporting': MarketplacePreview,
+  'aged-inventory': InventoryPreview,
+};
+const entries = (await getCollection('cases')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const assets = previews as Record<
+  string,
+  {
+    kind: 'Independent illustration' | 'Independent technical example · Synthetic data';
+  }
+>;
+---
+
+<section id="work" aria-labelledby="work-title">
+  <div class="section-head">
+    <h2 id="work-title">Selected work</h2>
+    <p>Professional experience, explained through evidence.</p>
+  </div>
+  {entries
+    .filter((e) => e.data.featured)
+    .map((entry) => {
+      const Preview = previewComponents[entry.id];
+      return (
+        <CasePreview entry={entry} kind={assets[entry.id]?.kind}>
+          <Fragment slot="evidence">{Preview && <Preview />}</Fragment>
+        </CasePreview>
+      );
+    })}
+  <div class="supporting">
+    <h2>More professional cases</h2>
+    <p>Three complementary perspectives on reliable analytical work.</p>
+    <div class="support-grid">
+      {entries
+        .filter((e) => !e.data.featured)
+        .map((entry) => (
+          <CasePreview entry={entry} supporting />
+        ))}
+    </div>
+  </div>
+</section>

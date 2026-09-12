@@ -1,0 +1,216 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const credentials = [
+  [
+    'Data-Driven Decisions with Power BI',
+    'Coursera · Course',
+    'https://www.coursera.org/account/accomplishments/certificate/ANSQTHKMBECG',
+  ],
+  [
+    'Advanced DAX for Microsoft Power BI Desktop',
+    'Udemy · Course',
+    'https://www.udemy.com/certificate/UC-77d3b4da-2c6f-47ef-997b-eb5bee4d67c4/',
+  ],
+  [
+    'Modern Big Data Analysis with SQL Specialization',
+    'Coursera · Specialization',
+    'https://www.coursera.org/account/accomplishments/specialization/certificate/AH4F36QGH3GL',
+  ],
+  [
+    'Applied Data Science with Python Specialization',
+    'Coursera · Specialization',
+    'https://www.coursera.org/account/accomplishments/specialization/certificate/5M72EGYCFSB7',
+  ],
+  [
+    'Statistics with Python Specialization',
+    'Coursera · Specialization',
+    'https://www.coursera.org/account/accomplishments/specialization/certificate/JSV6LSAU89K3',
+  ],
+  [
+    'Excel Skills for Data Analytics and Visualization Specialization',
+    'Coursera · Specialization',
+    'https://www.coursera.org/account/accomplishments/specialization/certificate/5R334T7V388H',
+  ],
+  [
+    'Data Visualization with Tableau Specialization',
+    'Coursera · Specialization',
+    'https://www.coursera.org/account/accomplishments/specialization/certificate/WML58DRDMX8N',
+  ],
+];
+const methods = [
+  'Python',
+  'pandas',
+  'scikit-learn',
+  'Exploratory analysis',
+  'Linear regression',
+  'Feature comparison',
+  'Interaction terms',
+  'Evaluation interpretation',
+];
+---
+
+<SiteLayout
+  title="Learning and Professional Development"
+  description="Personal analytics work and selected professional-development credentials supporting Ariel Christian Felices’s analytical practice."
+  active="Learning"
+>
+  <section class="hero">
+    <h1>Learning and Professional Development</h1>
+    <p class="value">
+      Selected learning alongside my professional practice. Employer projects and delivery
+      evidence are covered in <a href="/work/">Work</a>.
+    </p>
+  </section>
+
+  <section class="learning-section" aria-labelledby="project-heading">
+    <p class="eyebrow">Personal analytics project</p>
+    <h2 id="project-heading">Comparing Linear Regression Models in Python</h2>
+    <p class="summary">
+      I implemented and compared several linear-regression specifications in Python using
+      different feature sets and an interaction term, then examined how those choices
+      affected model fit and prediction error.
+    </p>
+    <p>
+      Using pandas and scikit-learn, I explored relationships in the Advertising dataset,
+      prepared model inputs, fitted alternative specifications, and interpreted R-squared
+      and root mean squared error. The project strengthened my practical understanding of
+      feature selection, interaction effects and model evaluation.
+    </p>
+    <p>
+      I completed this as a personal portfolio project to deepen my applied regression
+      skills and demonstrate how different model specifications can be evaluated and
+      interpreted in Python.
+    </p>
+    <ul class="methods" aria-label="Methods and tools">
+      {methods.map((method) => (
+        <li>{method}</li>
+      ))}
+    </ul>
+    <div class="project-links">
+      <a
+        href="https://github.com/A-C-A-F/Multiple-Linear-Regression"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View project on{' '}
+        <span class="link-tail">
+          GitHub <span aria-hidden="true">↗</span>
+        </span>
+      </a>
+      <a
+        href="https://www.kaggle.com/code/arielfelices/multiple-linear-regression"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View notebook on{' '}
+        <span class="link-tail">
+          Kaggle <span aria-hidden="true">↗</span>
+        </span>
+      </a>
+    </div>
+    <p class="link-note">External project links open in a new tab.</p>
+    <div class="evaluation">
+      <p>
+        I used a consistent train/test split to compare the alternative specifications.
+        Because the same held-out partition informed model selection, the results are
+        presented as exploratory model comparison rather than an untouched final
+        performance benchmark.
+      </p>
+      <p>
+        This project is not presented as causal analysis, a production forecasting system
+        or evidence of commercial advertising impact.
+      </p>
+    </div>
+  </section>
+
+  <section class="learning-section" aria-labelledby="development-heading">
+    <h2 id="development-heading">Selected Professional Development</h2>
+    <p>
+      Selected course and specialization credentials. Each link opens the credential in a
+      new tab.
+    </p>
+    <ul class="credentials">
+      {credentials.map(([title, provider, url]) => (
+        <li>
+          <span class="provider">{provider}</span>
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            {title.slice(0, title.lastIndexOf(' '))}{' '}
+            <span class="link-tail">
+              {title.slice(title.lastIndexOf(' ') + 1)} <span aria-hidden="true">↗</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</SiteLayout>
+
+<style>
+  .learning-section {
+    padding: 36px 0;
+    border-top: 1px solid var(--line);
+  }
+  .learning-section > p {
+    max-width: 76ch;
+  }
+  h2 {
+    margin: 0 0 20px;
+    max-width: 30ch;
+  }
+  .eyebrow {
+    margin: 0 0 12px;
+  }
+  .summary {
+    font-size: 1.125rem;
+  }
+  .evaluation {
+    color: var(--muted);
+  }
+  .methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    list-style: none;
+    padding: 0;
+    margin: 24px 0;
+    font-size: 0.875rem;
+  }
+  .credentials {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 0;
+    max-width: 76ch;
+  }
+  .credentials li {
+    padding: 18px 0;
+    border-top: 1px solid var(--line);
+  }
+  .provider {
+    display: block;
+    color: var(--muted);
+    font-size: 0.875rem;
+    margin-bottom: 6px;
+  }
+  a {
+    overflow-wrap: anywhere;
+  }
+  .link-note {
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 28px;
+    margin-top: 28px;
+  }
+  .link-tail {
+    white-space: nowrap;
+  }
+  .evaluation {
+    max-width: 76ch;
+    font-size: 0.9375rem;
+    margin-top: 28px;
+  }
+</style>

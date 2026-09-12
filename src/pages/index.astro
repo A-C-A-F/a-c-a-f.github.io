@@ -1,0 +1,48 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SelectedWork from '../components/SelectedWork.astro';
+---
+
+<SiteLayout
+  title="Senior Data Analyst"
+  description="Reliable analysis, repeatable workflows, and practical decision-support solutions. Professional work by Ariel Christian Felices."
+  active="Home"
+>
+  <section class="hero" aria-labelledby="intro-title">
+    <h1 id="intro-title">Senior Data Analyst</h1>
+    <p class="value">
+      I turn complex business questions and imperfect data into reliable analysis,
+      repeatable workflows, and practical decision-support solutions.
+    </p>
+    <p class="intro">
+      My experience spans e-commerce, financial services, healthcare, HR technology, and
+      regulatory data management.
+    </p>
+    <p class="location">Cavite, Philippines</p>
+    <div class="hero-meta">
+      <div class="actions">
+        <a class="button" href="#work">
+          Explore selected work <span aria-hidden="true">↓</span>
+        </a>
+        <a class="text-link" href="/resume-contact/">
+          Resume &amp; contact <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <SelectedWork />
+  <section class="contact">
+    <div>
+      <h2>Experience across industries</h2>
+      <a class="text-link" href="/experience/">
+        Explore professional experience →
+      </a>
+    </div>
+    <div>
+      <h2>Resume &amp; Contact</h2>
+      <a class="text-link" href="/resume-contact/">
+        View resume and contact options →
+      </a>
+    </div>
+  </section>
+</SiteLayout>

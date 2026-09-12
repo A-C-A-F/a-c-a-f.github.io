@@ -1,0 +1,15 @@
+---
+import EvidenceLabel from './EvidenceLabel.astro';
+import type { EvidenceKind } from './EvidenceLabel.astro';
+interface Props {
+  id?: string;
+  kind: EvidenceKind;
+  preview?: boolean;
+}
+const { id, kind, preview = false } = Astro.props;
+---
+
+<div id={id} class={preview ? 'evidence-preview' : 'example'}>
+  <EvidenceLabel kind={kind} />
+  <slot />
+</div>

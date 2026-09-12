@@ -1,0 +1,18 @@
+{
+  "periods": [
+    { "label": "Period 1", "days": 28, "complete": true },
+    { "label": "Period 2", "days": 28, "complete": true }
+  ],
+  "unit": "fictional activity units",
+  "scope": ["Product Alpha", "Product Beta"],
+  "products": [
+    { "label": "Product Alpha", "period1": 12, "period2": 15 },
+    { "label": "Product Beta", "period1": 8, "period2": 10 },
+    { "label": "Product Gamma", "period1": 20, "period2": 30 }
+  ],
+  "detail": [
+    { "product": "Product Alpha", "query": "Query A" },
+    { "product": "Product Alpha", "query": "Query B" },
+    { "product": "Product Beta", "query": "Query A" }
+  ]
+}

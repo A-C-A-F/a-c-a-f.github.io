@@ -1,0 +1,74 @@
+<figure aria-labelledby="interpretation-caption">
+  <ul class="interpretation-sequence">
+    <li class="node">
+      <strong>Define the question</strong>
+      <small>Make the intended interpretation clear.</small>
+    </li>
+    <li class="node">
+      <strong>Prepare the analysis population</strong>
+      <small>Clarify which observations belong and what each represents.</small>
+    </li>
+    <li class="node">
+      <strong>Distinguish descriptive and modeling samples</strong>
+      <small>Keep the population behind each result visible.</small>
+    </li>
+    <li class="node">
+      <strong>Estimate or compare associations</strong>
+      <small>Describe relationships within the limits of the analysis.</small>
+    </li>
+    <li class="node">
+      <strong>Compare groups and analytical approaches</strong>
+      <small>Consider findings alongside other analytical views.</small>
+    </li>
+    <li class="node">
+      <strong>Translate findings into qualified recommendations for review</strong>
+      <small>Carry assumptions and limitations into the discussion.</small>
+    </li>
+  </ul>
+  <div class="interpretation-boundaries">
+    <p>
+      <strong>Interpretation boundaries</strong>
+    </p>
+    <ul>
+      <li>Association does not establish causation.</li>
+      <li>An analytical result is not a production prediction system.</li>
+      <li>A recommendation does not prove adoption or impact.</li>
+    </ul>
+  </div>
+  <figcaption id="interpretation-caption" class="caption">
+    This conceptual illustration demonstrates interpretation boundaries, not the
+    historical studies or their results.
+  </figcaption>
+</figure>
+<style>
+  .interpretation-sequence {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 16px;
+  }
+  .interpretation-sequence li {
+    position: relative;
+    text-align: left;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+  }
+  .interpretation-sequence li:last-child {
+    margin-bottom: 0;
+  }
+  .interpretation-sequence li:not(:last-child)::after {
+    content: '↓';
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    color: var(--teal);
+  }
+  .interpretation-sequence small {
+    font-size: 14px;
+  }
+  .interpretation-boundaries {
+    border-top: 1px solid var(--line);
+    padding-top: 8px;
+    margin-top: 24px;
+    font-size: 16px;
+  }
+</style>

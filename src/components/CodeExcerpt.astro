@@ -1,0 +1,31 @@
+---
+interface Props {
+  code: string;
+  language?: string;
+}
+const { code, language = 'SQL' } = Astro.props;
+const escape = (text: string) =>
+  text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+const highlighted = code
+  .split('\n')
+  .map((line) =>
+    line.trimStart().startsWith('--')
+      ? '<span class="sql-comment">' + escape(line) + '</span>'
+      : escape(line).replace(
+          /\b(SELECT|AS|FROM|LEFT JOIN|ON|GROUP BY)\b/g,
+          '<span class="kw">$1</span>',
+        ),
+  )
+  .join('\n');
+---
+
+<div id="sql-example">
+  <div class="code-label">
+    <span>{language} · independently written</span>
+    <span>Synthetic example</span>
+  </div>
+  <pre
+    tabindex="0"
+    aria-label="SQL example; scroll horizontally if needed"
+  ><code set:html={highlighted}/></pre>
+</div>

@@ -1,0 +1,75 @@
+{
+  "tables": [
+    {
+      "id": "trial-input",
+      "caption": "Synthetic trials after a one-to-one lookup",
+      "headers": [
+        "Trial",
+        "Practice group",
+        "Preparation units",
+        "Completed",
+        "Population"
+      ],
+      "rows": [
+        ["Trial A", "Circle", "0", "0", "Both"],
+        ["Trial B", "Square", "0", "1", "Both"],
+        ["Trial C", "Circle", "1", "0", "Both"],
+        ["Trial D", "Circle", "1", "1", "Both"],
+        ["Trial E", "Square", "2", "0", "Both"],
+        ["Trial F", "Circle", "2", "1", "Both"],
+        ["Trial G", "Circle", "3", "1", "Both"],
+        ["Trial H", "Square", "Missing", "1", "Descriptive only: missing predictor"],
+        ["Trial I", "Circle", "1", "Missing", "Neither: missing outcome"]
+      ]
+    },
+    {
+      "id": "trial-populations",
+      "caption": "Synthetic population counts",
+      "headers": ["Population", "Trials", "Inclusion"],
+      "rows": [
+        ["Input", "9", "One observation per fictional trial"],
+        ["Descriptive", "8", "Recorded completion outcome"],
+        ["Modeling", "7", "Recorded outcome and predictor"]
+      ]
+    },
+    {
+      "id": "trial-descriptive",
+      "caption": "Synthetic descriptive comparison; not a group effect",
+      "headers": ["Practice group", "Trials", "Completed", "Completion rate"],
+      "rows": [
+        ["Circle", "5", "3", "60.0%"],
+        ["Square", "3", "2", "66.7%"]
+      ]
+    },
+    {
+      "id": "trial-model",
+      "caption": "Synthetic logistic association; completion outcome",
+      "headers": [
+        "Predictor",
+        "Log-odds coefficient",
+        "Odds ratio per unit",
+        "Model trials"
+      ],
+      "rows": [["Preparation units", "0.493", "1.637", "7"]]
+    },
+    {
+      "id": "trial-checks",
+      "caption": "Checks of this synthetic example only",
+      "headers": ["Check", "Result"],
+      "rows": [
+        ["Required fields, unique keys and join cardinality", "PASS"],
+        ["Binary outcome, explicit exclusions and both model classes", "PASS"],
+        ["Full rank; mixed outcomes at shared predictor levels", "PASS"],
+        ["Convergence, finite outputs and fitted equation check", "PASS"],
+        ["Duplicate lookup fixture", "Rejected: Lookup keys must be unique and present"],
+        ["Invalid outcome fixture", "Rejected: Outcome must be binary or missing"],
+        [
+          "Unusable population fixture",
+          "Rejected: Modeling population needs usable trials and both outcome classes"
+        ],
+        ["Constant predictor fixture", "Rejected: Model matrix must have full rank"],
+        ["Original input objects unchanged", "PASS"]
+      ]
+    }
+  ]
+}

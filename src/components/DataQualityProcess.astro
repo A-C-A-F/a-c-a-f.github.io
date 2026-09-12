@@ -1,0 +1,219 @@
+<figure
+  class="quality-lifecycle"
+  aria-labelledby="quality-lifecycle-caption"
+  aria-describedby="quality-lifecycle-text"
+>
+  <p id="quality-lifecycle-text" class="lifecycle-text">
+    A seven-stage sequence connects shared rule meaning, reusable analytical checks,
+    management and technical reporting, owner routing, source correction outside the
+    audit, cycle comparison, and continued visibility of unresolved issues and
+    regressions.
+  </p>
+  <p class="sequence-cue">Follow stages 01–07.</p>
+  <ol class="quality-process">
+    <li class="shared-stage">
+      <span class="stage-type">Shared definition</span>
+      <strong>Confirm rule meaning and responsible owner</strong>
+      <small>
+        Agree what the check means and who can interpret or correct a finding.
+      </small>
+    </li>
+    <li class="audit-stage">
+      <span class="stage-type">Analytical audit</span>
+      <strong>Run reusable validation checks</strong>
+      <small>
+        Apply the configured rules and keep missing or exceptional inputs visible.
+      </small>
+    </li>
+    <li class="audit-stage">
+      <span class="stage-type">Analytical audit</span>
+      <strong>Produce a health summary and exception package</strong>
+      <small>Provide a management view and the detail needed for investigation.</small>
+    </li>
+    <li class="shared-stage">
+      <span class="stage-type">Shared review</span>
+      <strong>Classify and route findings</strong>
+      <small>
+        Send each finding to the owner with the authority and context to respond.
+      </small>
+    </li>
+    <li class="owner-stage">
+      <span class="stage-type">Owner-led remediation</span>
+      <strong>Correct the source outside the audit framework</strong>
+      <small>Keep source changes under the control of the responsible owner.</small>
+    </li>
+    <li class="audit-stage">
+      <span class="stage-type">Analytical audit</span>
+      <strong>Re-run and compare audit cycles</strong>
+      <small>
+        Distinguish corrected findings from issues that remain or newly appear.
+      </small>
+    </li>
+    <li class="shared-stage">
+      <span class="stage-type">Continuing review</span>
+      <strong>Retain unresolved issues and newly detected regressions</strong>
+      <small>
+        Carry open findings forward instead of resetting the record each cycle.
+      </small>
+    </li>
+  </ol>
+  <div class="track-key" role="group" aria-label="Lifecycle responsibility key">
+    <span>
+      <b>Analytical audit</b> evaluates and reports.
+    </span>
+    <span>
+      <b>Owner-led remediation</b> changes the source.
+    </span>
+    <span>
+      <b>Shared review</b> connects meaning, routing, and follow-up.
+    </span>
+  </div>
+  <figcaption id="quality-lifecycle-caption" class="caption">
+    A data-free lifecycle separating analytical audit work from owner-led source
+    correction. Numbering, responsibility labels, headings, and descriptions communicate
+    the sequence without relying on color.
+  </figcaption>
+</figure>
+
+<style>
+  .lifecycle-text {
+    margin: 18px 0 0;
+  }
+
+  .sequence-cue {
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .quality-process {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin: 24px 0 18px;
+    padding: 0;
+    list-style: none;
+    counter-reset: quality-stage;
+  }
+
+  .quality-process li {
+    position: relative;
+    min-width: 0;
+    padding: 17px;
+    border: 1px solid var(--line);
+    border-left-width: 4px;
+    border-radius: 3px;
+    background: var(--paper);
+    counter-increment: quality-stage;
+  }
+
+  .quality-process li::before {
+    content: counter(quality-stage, decimal-leading-zero);
+    display: inline-grid;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 13px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--teal);
+    color: white;
+    font:
+      700 12px/1 Consolas,
+      monospace;
+  }
+
+  .quality-process li:not(:last-child)::after {
+    content: '↓';
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    color: var(--teal);
+    font-weight: 700;
+  }
+
+  .audit-stage {
+    border-left-color: var(--teal) !important;
+  }
+
+  .owner-stage {
+    border-left-style: dashed !important;
+    border-left-color: var(--ink) !important;
+  }
+
+  .shared-stage {
+    border-left-color: var(--muted) !important;
+  }
+
+  .stage-type,
+  .quality-process strong,
+  .quality-process small {
+    display: block;
+  }
+
+  .stage-type {
+    margin-bottom: 6px;
+    color: var(--muted);
+    font:
+      700 11px/1.4 Consolas,
+      monospace;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .quality-process strong {
+    margin-bottom: 7px;
+  }
+
+  .quality-process small {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .track-key {
+    display: grid;
+    gap: 8px;
+    margin: 19px 0 0;
+    padding: 15px 17px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    font-size: 14px;
+  }
+
+  .track-key span {
+    display: block;
+  }
+
+  .quality-lifecycle figcaption {
+    margin-top: 14px;
+  }
+
+  @media (min-width: 701px) {
+    .quality-process {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .quality-process li:last-child {
+      grid-column: 1 / -1;
+    }
+
+    .quality-process li:not(:last-child)::after {
+      content: none;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .quality-process {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 30px 18px;
+    }
+
+    .quality-process li:last-child {
+      grid-column: 2;
+    }
+
+    .track-key {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

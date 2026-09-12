@@ -1,0 +1,35 @@
+---
+const { active } = Astro.props;
+const links = [
+  ['Home', '/'],
+  ['Work', '/work/'],
+  ['Experience', '/experience/'],
+  ['Learning', '/learning/'],
+  ['Resume & Contact', '/resume-contact/'],
+];
+---
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/">
+      Ariel Christian Felices<small>Analytics · Data quality · Decision support</small>
+    </a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      {links.map(([label, url]) => (
+        <a href={url} aria-current={active === label ? 'page' : undefined}>
+          {label}
+        </a>
+      ))}
+    </nav>
+    <details class="mobile-nav">
+      <summary>Menu</summary>
+      <nav aria-label="Mobile navigation">
+        {links.map(([label, url]) => (
+          <a href={url} aria-current={active === label ? 'page' : undefined}>
+            {label}
+          </a>
+        ))}
+      </nav>
+    </details>
+  </div>
+</header>

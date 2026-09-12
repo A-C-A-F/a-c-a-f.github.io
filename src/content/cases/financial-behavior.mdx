@@ -1,0 +1,204 @@
+---
+{
+  'title': 'Using Financial Behavior Analysis to Inform Business Decisions',
+  'description': 'I built repayment-association analysis and jointly developed advanced savings models, translating findings into reports and recommendations used in stakeholder reviews and decisions.',
+  'context': 'LifeBank Foundation',
+  'order': 5,
+  'featured': false,
+  'tags': ['Statistical analysis', 'R'],
+  'detailed': true,
+  'linkLabel': 'Read the financial-behavior case',
+  'opening':
+    {
+      'subtitle': 'Building fit-for-purpose analytical populations, comparing statistical methods and translating findings into recurring decision-support reporting.',
+      'contribution': 'I built joined analytical populations and logistic-regression repayment analysis, and jointly developed OLS and quantile-regression savings analyses. I also handled data completeness and continuity, created visualizations, and wrote the final report and presentation for the advanced savings study.',
+      'outcome': 'Reporting work accepted and approved; reports and recommendations used in stakeholder reviews and decisions, with recurring analysis continuing when I left LifeBank.',
+      'evidence': 'Professional narrative; an independent data-free interpretation illustration and a separate synthetic R association example.',
+    },
+}
+---
+
+import EvidencePanel from '../../components/EvidencePanel.astro';
+import FinancialInterpretation from '../../components/FinancialInterpretation.astro';
+import FinancialSyntheticDemo from '../../components/FinancialSyntheticDemo.astro';
+import Scope from '../../components/Scope.astro';
+
+<div>
+  <section id="context">
+    <p class="eyebrow">{'01 / Context'}</p>
+    <h2>{'Turn operational records into useful analytical questions'}</h2>
+    <p>
+      {
+        'Lending, savings and repayment totals described activity, but stakeholders also needed to understand differences between groups and the questions those patterns raised. A useful analysis depended on knowing which observations were included, what each row represented and how far a statistical finding could be interpreted.'
+      }
+    </p>
+    <p>
+      {
+        'The work progressed from portfolio-level comparisons to repayment-association analysis and more detailed savings studies. Each study needed a population and method suited to its question, followed by reporting that connected the findings to qualified recommendations.'
+      }
+    </p>
+    <div id="contribution">
+      <h3>{'Direct responsibility and shared analytical work'}</h3>
+      <p>
+        {
+          'I prepared and personally presented a portfolio review of lending, savings and regional risk patterns. In a subsequent jointly credited study, I built joined analytical populations, performed logistic-regression repayment analysis and compared savings patterns across selected groups.'
+        }
+      </p>
+      <p>
+        {
+          'For the advanced savings study, I jointly prepared the population and built and ran OLS and quantile-regression analyses with another analyst. I personally handled completeness, missingness and continuity, developed the visualizations, wrote the final report and created the presentation. We jointly performed diagnostic and method-comparison work, interpreted the findings and presented them.'
+        }
+      </p>
+      <p>
+        {
+          'My later responsibilities included gathering, joining, cleaning and preparing data for survey-related reporting, as well as preparation and analysis for a later financial-behavior report. Responsibilities differed by study; source provision, upstream systems and final business actions were not mine to control.'
+        }
+      </p>
+    </div>
+  </section>
+  <section id="approach">
+    <p class="eyebrow">{'02 / Data preparation and analysis'}</p>
+    <h2>{'Start with the observation, not the model'}</h2>
+    <p>
+      {
+        'For the repayment study, I checked joins for duplicate or repeated observations and confirmed that each row represented the intended analytical observation. I built separate populations for modeling and descriptive comparison because the two tasks required different information and inclusion conditions.'
+      }
+    </p>
+    <p>
+      {
+        'I used logistic regression to examine associations with repayment status and compared savings patterns across selected groups. The purpose was to understand relationships within the populations analyzed and translate them into qualified recommendations, not to establish that a characteristic caused an outcome.'
+      }
+    </p>
+    <div id="statistical-methods">
+      <h3>{'Compare average relationships with differences across the distribution'}</h3>
+      <p>
+        {
+          'For the advanced savings study, we used ordinary least squares, or OLS, to examine average relationships and quantile regression to examine how relationships differed across the savings distribution. Looking beyond the average made the analytical comparison more informative without treating one method as a universal answer.'
+        }
+      </p>
+      <p>
+        {
+          'I handled the completeness, missingness and continuity of the data used in that study. We jointly examined influence, residual and error diagnostics and compared the methods when interpreting the findings. I turned that work into visualizations, the final report and presentation materials.'
+        }
+      </p>
+    </div>
+  </section>
+  <section id="example">
+    <p class="eyebrow">{'03 / Independent evidence'}</p>
+    <h2>{'Carry the interpretation limits with the finding'}</h2>
+    <p>
+      {
+        'This data-free illustration explains a general reasoning sequence. It is separate from the professional studies and does not show their populations, models or results.'
+      }
+    </p>
+    <EvidencePanel id="interpretation-illustration" kind="Independent illustration">
+      <p id="preparation-note" class="caption">
+        {
+          'Created for this portfolio with AI-assisted development. It does not reproduce employer data, models, code, analytical results, or system architecture.'
+        }
+      </p>
+      <h3>{'From a question to a qualified recommendation'}</h3>
+      <FinancialInterpretation />
+    </EvidencePanel>
+    <EvidencePanel
+      id="practice-trial-example"
+      kind="Independent technical example · Synthetic data"
+    >
+      <FinancialSyntheticDemo />
+    </EvidencePanel>
+  </section>
+  <section id="validation">
+    <p class="eyebrow">{'04 / Validation and interpretation'}</p>
+    <h2>{'Match the check to the study'}</h2>
+    <p>
+      {
+        'In the repayment study, I checked repeated observations and the intended unit of analysis before interpreting the model and group comparisons. These were population-preparation checks, not evidence of predictive accuracy or production-model validation.'
+      }
+    </p>
+    <p>
+      {
+        'In the advanced savings study, diagnostic and method-comparison work was shared with another analyst. We considered model behavior alongside the population and the patterns shown by different analytical approaches. A statistical association remained an association, not proof of a causal effect.'
+      }
+    </p>
+    <p>
+      {
+        'Recommendations addressed different questions across the work: regional follow-up in the portfolio review, repayment monitoring and group comparisons in the repayment study, and product or savings considerations in the advanced savings study. Their interpretation remained subject to business judgment.'
+      }
+    </p>
+  </section>
+  <section id="outcome">
+    <p class="eyebrow">{'05 / Supported outcome'}</p>
+    <h2>{'Reporting used in real reviews and decisions'}</h2>
+    <p>
+      {
+        'The financial-behavior reporting work was accepted and approved, and its reports and recommendations supported real stakeholder reviews and decisions. Stakeholder feedback led to separate follow-up analyses by the team. The reporting work remained a recurring analytical activity when I left LifeBank.'
+      }
+    </p>
+    <p>
+      {
+        'This outcome describes the reporting series. It does not mean that every report or recommendation was individually approved or implemented, or that a recommendation produced a measured business or client result.'
+      }
+    </p>
+  </section>
+  <Scope>
+    <ul>
+      <li>
+        {
+          'My responsibilities ranged from direct population preparation and repayment analysis to joint advanced modeling and diagnostics. I wrote the advanced savings report and created its visualizations and presentation; that does not imply sole authorship of every underlying model or study.'
+        }
+      </li>
+      <li>
+        {
+          'The repayment study’s checks concerned duplicate or repeated observations and the intended unit of analysis. I do not present that work as population-total reconciliation, held-out testing or validated production prediction.'
+        }
+      </li>
+      <li>
+        {
+          'Findings describe associations. Business decisions remained with stakeholders; separate feedback-led analyses were not maintenance or reruns of the same model. No automated lending decisions, causal impact, quantified improvement or organization-wide adoption is claimed.'
+        }
+      </li>
+      <li>
+        {
+          'Employer records, original model outputs, coefficients, rules, code, charts and internal identifiers remain private. The independent illustration explains a general method and is not a historical employer artifact.'
+        }
+      </li>
+    </ul>
+  </Scope>
+  <section id="tools">
+    <p class="eyebrow">{'06 / Supporting capabilities'}</p>
+    <h2>{'Tools and methods'}</h2>
+    <p>
+      {
+        'R, R Markdown, data joining, analytical-population design, duplicate and repeated-observation checks, completeness and continuity handling, descriptive comparison, logistic regression, joint OLS and quantile-regression analysis, joint model diagnostics, visualization, report writing and stakeholder presentation.'
+      }
+    </p>
+    <div class="tags">
+      <span>{'Analytical populations'}</span>
+      <span>{'Regression analysis'}</span>
+      <span>{'Model interpretation'}</span>
+      <span>{'R / R Markdown'}</span>
+      <span>{'Visualization and reporting'}</span>
+      <span>{'Stakeholder presentation'}</span>
+    </div>
+  </section>
+  <section id="evidence-index">
+    <p class="eyebrow">{'07 / Evidence index'}</p>
+    <h2>{'Return to the interpretation boundaries'}</h2>
+    <ol class="evidence-index">
+      <li>
+        <span class="number">{'01'}</span>
+        <div>
+          <a href="#interpretation-illustration">{'Data-free interpretation sequence'}</a>
+          <small>{'Independent illustration'}</small>
+        </div>
+      </li>
+      <li>
+        <span class="number">{'02'}</span>
+        <div>
+          <a href="#practice-trial-example">{'Synthetic practice-trial R analysis'}</a>
+          <small>{'Independent technical example · Synthetic data'}</small>
+        </div>
+      </li>
+    </ol>
+  </section>
+</div>

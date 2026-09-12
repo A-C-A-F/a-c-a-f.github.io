@@ -1,0 +1,344 @@
+---
+import ResponsiveTable from './ResponsiveTable.astro';
+import rSource from '../examples/code/data-quality-synthetic-audit.R?raw';
+
+const currentRecords = [
+  ['Record 101', 'Service team', 'Group A', 'Active', '84', '2026-09-01'],
+  ['Record 102', 'Service team', 'Group B', 'Active', '72', '2026-09-02'],
+  ['Record 103', 'Support team', 'Group B', 'Paused', '108', '2026-09-03'],
+  ['Record 104', 'Support team', 'Group C', 'Pending', '65', '2026-09-04'],
+  ['Record 105', 'Service team', 'Group D', 'Active', '91', 'not-a-date'],
+];
+
+const ruleSummary = [
+  ['Record identifier is unique', 'PASS', '0 of 5', '100%'],
+  ['Category is present', 'PASS', '0 of 5', '100%'],
+  ['Status uses the configured set', 'FAIL', '1 of 5', '80%'],
+  ['Quality score is within 0–100', 'FAIL', '1 of 5', '80%'],
+  ['Review date is valid', 'FAIL', '1 of 5', '80%'],
+];
+
+const exceptions = [
+  [
+    'Record 103',
+    'Quality score is within 0–100',
+    'Quality score is outside the configured range',
+    'Data stewardship',
+  ],
+  [
+    'Record 104',
+    'Status uses the configured set',
+    'Status is outside the configured set',
+    'Process owner',
+  ],
+  [
+    'Record 105',
+    'Review date is valid',
+    'Review date is not a valid date',
+    'Data stewardship',
+  ],
+];
+
+const cycleComparison = [
+  ['Record 102', 'Category is missing', 'Present', 'Absent', 'Corrected'],
+  [
+    'Record 103',
+    'Quality score is outside the configured range',
+    'Present',
+    'Present',
+    'Unresolved',
+  ],
+  [
+    'Record 104',
+    'Status is outside the configured set',
+    'Absent',
+    'Present',
+    'Newly detected',
+  ],
+  [
+    'Record 105',
+    'Review date is not a valid date',
+    'Absent',
+    'Present',
+    'Newly detected',
+  ],
+];
+
+const marker = '# ---- Compare audit cycles ----';
+const [auditCode, comparisonCode] = rSource.split(marker);
+if (!comparisonCode) throw new Error('Synthetic R source is missing its display marker.');
+---
+
+<div class="quality-demo">
+  <p class="demonstration-disclosure">
+    <strong>
+      Clean-room demonstration created independently for this portfolio with fictional
+      records, fields, rules, thresholds, owner labels, and outputs. It does not reproduce
+      employer code, data, fields, rules, thresholds, reports, credentials, database
+      structure, schedules, or system architecture.
+    </strong>
+  </p>
+  <p>
+    Five configured checks evaluate five fictional records in the current audit cycle. The
+    same reusable functions also evaluate a prior cycle so that findings can be classified
+    as corrected, unresolved, or newly detected.
+  </p>
+
+  <div id="quality-synthetic-input">
+    <ResponsiveTable label="Current fictional audit input; stacked records on mobile">
+      <table class="mobile-records" role="table">
+        <caption>Current cycle · fictional input records</caption>
+        <thead>
+          <tr>
+            <th scope="col">Record</th>
+            <th scope="col">Owner group</th>
+            <th scope="col">Category</th>
+            <th scope="col">Status</th>
+            <th scope="col">Quality score</th>
+            <th scope="col">Review date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {currentRecords.map((row) => (
+            <tr>
+              {row.map((value, index) => (
+                <td
+                  data-label={
+                    [
+                      'Record',
+                      'Owner group',
+                      'Category',
+                      'Status',
+                      'Quality score',
+                      'Review date',
+                    ][index]
+                  }
+                >
+                  {value}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </ResponsiveTable>
+  </div>
+
+  <div class="quality-code-disclosures">
+    <details>
+      <summary>Define fictional records, rules, and reusable checks · view R</summary>
+      <p class="code-introduction">
+        The first part defines both fictional cycles, a configuration-driven rule list,
+        and reusable functions that return summaries and record-level exceptions.
+      </p>
+      <pre
+        tabindex="0"
+        aria-label="R audit setup and evaluation code; scroll horizontally if needed"
+      ><code>{auditCode.trim()}</code></pre>
+    </details>
+    <details>
+      <summary>Compare audit cycles and print the outputs · view R</summary>
+      <p class="code-introduction">
+        The second part compares exception keys across cycles and classifies each finding
+        according to whether it disappeared, persisted, or first appeared.
+      </p>
+      <pre
+        tabindex="0"
+        aria-label="R cycle comparison code; scroll horizontally if needed"
+      ><code>{`${marker}\n${comparisonCode.trim()}`}</code></pre>
+    </details>
+  </div>
+
+  <div id="quality-synthetic-outputs" class="quality-outputs">
+    <ResponsiveTable label="Synthetic rule summary; stacked records on mobile">
+      <table class="mobile-records" role="table">
+        <caption>Rule summary · current fictional cycle</caption>
+        <thead>
+          <tr>
+            <th scope="col">Configured rule</th>
+            <th scope="col">State</th>
+            <th scope="col">Failed records</th>
+            <th scope="col">Pass rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ruleSummary.map((row) => (
+            <tr>
+              {row.map((value, index) => (
+                <td
+                  class:list={{ state: index === 1 }}
+                  data-label={
+                    ['Configured rule', 'State', 'Failed records', 'Pass rate'][index]
+                  }
+                >
+                  {value}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </ResponsiveTable>
+
+    <ResponsiveTable label="Synthetic record-level exceptions; stacked records on mobile">
+      <table class="mobile-records" role="table">
+        <caption>Exception output · current fictional cycle</caption>
+        <thead>
+          <tr>
+            <th scope="col">Record</th>
+            <th scope="col">Rule</th>
+            <th scope="col">Finding</th>
+            <th scope="col">Fictional owner route</th>
+          </tr>
+        </thead>
+        <tbody>
+          {exceptions.map((row) => (
+            <tr>
+              {row.map((value, index) => (
+                <td
+                  data-label={
+                    ['Record', 'Rule', 'Finding', 'Fictional owner route'][index]
+                  }
+                >
+                  {value}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </ResponsiveTable>
+
+    <ResponsiveTable label="Synthetic cycle comparison; stacked records on mobile">
+      <table class="mobile-records" role="table">
+        <caption>Cycle comparison · prior to current fictional audit</caption>
+        <thead>
+          <tr>
+            <th scope="col">Record</th>
+            <th scope="col">Finding</th>
+            <th scope="col">Prior cycle</th>
+            <th scope="col">Current cycle</th>
+            <th scope="col">Classification</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cycleComparison.map((row) => (
+            <tr>
+              {row.map((value, index) => (
+                <td
+                  class:list={{ state: index === 4 }}
+                  data-label={
+                    [
+                      'Record',
+                      'Finding',
+                      'Prior cycle',
+                      'Current cycle',
+                      'Classification',
+                    ][index]
+                  }
+                >
+                  {value}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </ResponsiveTable>
+  </div>
+
+  <div class="interpretation-boundary">
+    <p>
+      <strong>A PASS has a limited meaning.</strong> It shows only that a configured rule
+      passed for this audit cycle; it does not prove that the entire fictional dataset is
+      perfectly correct.
+    </p>
+    <p>
+      <strong>Detection remains separate from correction.</strong> The example reports
+      findings and a fictional owner route. It does not modify either source dataset.
+    </p>
+  </div>
+  <p class="caption">
+    The example connects reusable checks, exception evidence, owner routing, and cycle
+    comparison to the lifecycle above. Its outputs are illustrative portfolio evidence,
+    not historical employer results.
+  </p>
+</div>
+
+<style>
+  .demonstration-disclosure {
+    padding-left: 14px;
+    border-left: 3px solid var(--teal);
+  }
+
+  .quality-code-disclosures,
+  .quality-outputs {
+    display: grid;
+    gap: 22px;
+    margin-top: 28px;
+  }
+
+  .quality-code-disclosures {
+    gap: 14px;
+  }
+
+  details {
+    min-width: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+  }
+
+  summary {
+    min-height: 48px;
+    padding: 13px 4px;
+    color: var(--teal);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .code-introduction {
+    margin: 0 15px 13px;
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  pre {
+    max-width: 100%;
+    margin: 0 15px 16px;
+  }
+
+  .state {
+    font-weight: 700;
+  }
+
+  .interpretation-boundary {
+    display: grid;
+    gap: 12px;
+    margin-top: 28px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+  }
+
+  .interpretation-boundary p {
+    margin: 0;
+  }
+
+  @media (max-width: 700px) {
+    summary {
+      padding-right: 2px;
+      padding-left: 2px;
+    }
+
+    .code-introduction {
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+
+    pre {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+</style>

@@ -1,0 +1,295 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+const roles = [
+  {
+    id: 'sunco',
+    employer: 'Sunco Lighting, Inc.',
+    role: 'Senior Data Analyst',
+    start: '2026-02',
+    end: '2026-08',
+    startLabel: 'Feb 2026',
+    endLabel: 'Aug 2026',
+    context: 'E-commerce and marketplace analytics',
+    summary:
+      'I designed analytical products and decision models for product, advertising, pricing and inventory teams, connecting business questions with SQL, BI and reusable automation.',
+    bullets: [
+      'Designed and built the Power BI competitive-intelligence solution with SQL, DAX and contextual search-term analysis, then published and maintained the approved report for Ads Team use.',
+      'Built a governed Market Share intelligence product in Python and SQL. The Streamlit application was completed, tested, reviewed and approved, with deployment planned. I separately packaged and transferred a release-tested Codex Skill adopted by stakeholders for decision support.',
+      'Built the core analytical logic and recommendation model for an Excel aged-inventory tool within an existing workbook. It was approved and used in recurring monthly reviews, with stakeholders retaining final decisions.',
+      'Developed pricing-opportunity analysis and validated Power BI views so stakeholders could compare pricing options and evaluate recommendations.',
+      'Validated Redshift reporting sources and documented reporting grain, definitions, lineage and findings in dbt documentation for analysts and data owners.',
+    ],
+    tools:
+      'SQL · Python · Power BI / DAX · Excel · Amazon Redshift · Streamlit · dbt documentation',
+    links: [
+      ['Market Share Intelligence', 'market-share-workflow'],
+      ['Aged Inventory', 'aged-inventory'],
+      ['Competitive Intelligence', 'competitive-intelligence'],
+    ],
+  },
+  {
+    id: 'lifebank',
+    employer: 'LifeBank Foundation',
+    role: 'Data Analyst (Consultant)',
+    start: '2024-04',
+    end: '2026-04',
+    startLabel: 'Apr 2024',
+    endLabel: 'Apr 2026',
+    context: 'Financial services and operational data quality',
+    summary:
+      'I built reusable validation and recurring analytical reporting that gave the Data Science team and stakeholders documented evidence for reviews and decisions.',
+    bullets: [
+      'Designed and implemented the reusable R/R Markdown data-quality framework with table-specific rules, read-oriented PostgreSQL access, health summaries and record-level exception reporting.',
+      'Authored and implemented the formally approved operating protocol and coordinated its implementation and handoff with Data Engineering. Data Engineering owned ingestion and later recurring execution; source owners retained correction responsibility.',
+      'Compared recurring audit cycles to distinguish corrected findings, unresolved issues and new regressions. The framework remained active when I left.',
+      'Led and delivered the approved Financial Behavior reporting program, including joined analytical populations and logistic-regression analysis. I checked joins for repeated observations and confirmed the intended analytical unit. The reporting supported real stakeholder reviews and decisions.',
+      'Completed OLS and quantile-regression modeling, diagnostics and interpretation with collaborators, and personally produced the advanced savings study’s visuals, final report and presentation materials.',
+    ],
+    tools:
+      'R / R Markdown · PostgreSQL · Statistical analysis · Excel reconciliation · Data-quality governance',
+    links: [
+      ['Data Quality Framework', 'data-quality-process'],
+      ['Financial Behavior Analysis', 'financial-behavior'],
+    ],
+  },
+  {
+    id: 'theoria',
+    employer: 'Theoria Medical',
+    role: 'Lead Data Analyst',
+    start: '2025-09',
+    end: '2025-12',
+    startLabel: 'Sep 2025',
+    endLabel: 'Dec 2025',
+    context: 'Healthcare analytics and clinical reporting',
+    summary:
+      'I led reporting and validation work across clinical and partner workflows, aligning Product, Operations and engineering around usable metrics and clear business definitions.',
+    bullets: [
+      'Led Partner Portal analytics for Mission Health, delivering login trends, month-over-month usage measures and facility/user-level insights used by Product and Operations leadership for access monitoring and decisions.',
+      'Assumed ownership of the Quality Measures Dashboard (QMD) migration from another hub and helped complete the BigQuery-to-Fabric transition in approximately 30% fewer working days than planned.',
+      'Collaborated with Product and engineering stakeholders to clarify electronic medical record (EMR), admission/discharge/transfer (ADT) and facility-linked workflows. I provided initial RDCO dashboard source validation to align clinical operations and reporting needs.',
+    ],
+    tools:
+      'Microsoft Fabric · Reporting validation · Workflow clarification · Stakeholder alignment',
+    links: [],
+  },
+  {
+    id: 'talleco',
+    employer: 'Talleco.com, Inc. / JobTarget',
+    role: 'Data Scientist',
+    start: '2023-05',
+    end: '2025-09',
+    startLabel: 'May 2023',
+    endLabel: 'Sep 2025',
+    context: 'HR technology and recruitment advertising',
+    summary:
+      'I developed reporting datasets, analytical models and stakeholder reporting for recruitment-advertising operations, combining technical delivery with validation and knowledge transfer.',
+    bullets: [
+      'Built the core Amazon Athena Marketplace dataset, owned validation and documentation, and published and maintained it in Amazon QuickSight. It remained in active use by senior data leadership and other stakeholders when I left.',
+      'Built CPA forecasting models and anomaly-detection logic using historical campaign data, bringing actuals, forecasts and alerts into dashboards that helped Product and Operations prioritize campaign investigations.',
+      'Reconciled Marketplace records with Finance’s operational reporting, achieving a 97% record-level match in the reviewed 2024 YTD scope, particularly for revenue values. Business-definition differences remained documented for Finance review.',
+      'Mentored interns and newly hired analysts through structured onboarding and Python/R training. I received Employee of the Year recognition in 2023.',
+    ],
+    tools:
+      'Amazon Athena SQL · Amazon QuickSight · SQL Server · Power BI · Python / R · Reconciliation',
+    links: [['Marketplace Reporting', 'marketplace-reporting']],
+  },
+  {
+    id: 'ul',
+    employer: 'UL Solutions',
+    role: 'Research Lead',
+    start: '2017-07',
+    end: '2023-04',
+    startLabel: 'Jul 2017',
+    endLabel: 'Apr 2023',
+    context: 'Data Management Team, Research Division',
+    summary:
+      'I led the Data Management Team within the Research Division, coordinating regulatory product-data maintenance and review-ready delivery.',
+    bullets: [
+      'Coordinated regulatory reference updates, change requests and delivery tracking to keep research datasets current and reviewable.',
+      'Led structured data audits and exception-tracking workflows, coordinating documented corrections and cross-functional follow-up to keep issue ownership and delivery progress traceable.',
+      'Coordinated workload planning, maintenance handoffs and delivery tracking across research, audit and upload checkpoints, keeping team responsibilities and progress visible.',
+    ],
+    tools:
+      'Regulatory research · Data auditing · Excel · Workload planning · Handoff documentation',
+    links: [],
+  },
+];
+---
+
+<SiteLayout
+  title="Experience"
+  description="Professional experience in analytical products, BI reporting, statistical analysis and data-quality operations across five industries."
+  active="Experience"
+>
+  <section class="hero experience-intro" aria-labelledby="experience-title">
+    <p class="eyebrow">Professional experience</p>
+    <h1 id="experience-title">Experience</h1>
+    <p class="experience-lead">
+      My work spans analytical products, BI reporting, statistical analysis and
+      data-quality operations across five industries. These roles show the scope of my
+      work and the teams it supported; the Work cases explore selected projects in depth.
+    </p>
+    <p class="consultancy-note">
+      LifeBank was a consultancy engagement and overlapped with other roles.
+    </p>
+  </section>
+  <div class="career-history">
+    {roles.map((entry) => (
+      <section
+        class="experience-role"
+        aria-labelledby={`${entry.id}-title`}
+        id={entry.id}
+      >
+        <header class="role-identity">
+          <p class="role-dates">
+            <time datetime={entry.start}>{entry.startLabel}</time> –{' '}
+            <time datetime={entry.end}>{entry.endLabel}</time>
+          </p>
+          <h2 id={`${entry.id}-title`}>{entry.employer}</h2>
+          <p class="role-title">{entry.role}</p>
+          <p class="role-context">{entry.context}</p>
+        </header>
+        <div class="role-detail">
+          <p class="role-summary">{entry.summary}</p>
+          <ul class="accomplishments">
+            {entry.bullets.map((bullet) => (
+              <li>{bullet}</li>
+            ))}
+          </ul>
+          <p class="role-tools">
+            <strong>Tools and capabilities</strong>
+            <span>{entry.tools}</span>
+          </p>
+          {entry.links.length > 0 && (
+            <nav class="related-work" aria-label={`${entry.employer} related Work cases`}>
+              <p>Explore the work</p>
+              <ul>
+                {entry.links.map(([label, slug]) => (
+                  <li>
+                    <a href={`/work/${slug}/`}>
+                      {label}
+                      <span aria-hidden="true"> →</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
+        </div>
+      </section>
+    ))}
+  </div>
+  <section class="experience-close" aria-label="Continue to resume and contact">
+    <a class="text-link" href="/resume-contact/">
+      Resume &amp; Contact →
+    </a>
+  </section>
+</SiteLayout>
+
+<style>
+  .experience-intro {
+    max-width: 860px;
+  }
+  .experience-intro h1 {
+    margin: 10px 0 20px;
+  }
+  .experience-lead {
+    max-width: 68ch;
+    font-size: 21px;
+  }
+  .consultancy-note {
+    color: var(--muted);
+    font-size: 16px;
+  }
+  .experience-role {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.7fr);
+    gap: 60px;
+    padding: 46px 0;
+    border-top: 1px solid var(--line);
+  }
+  .role-identity,
+  .role-detail {
+    min-width: 0;
+  }
+  .role-dates {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  .role-identity h2 {
+    font-size: 30px;
+    overflow-wrap: anywhere;
+  }
+  .role-title {
+    font-weight: 600;
+    margin-top: 14px;
+  }
+  .role-context {
+    color: var(--muted);
+    font-size: 16px;
+    margin-top: 6px;
+  }
+  .role-summary {
+    font-size: 20px;
+  }
+  .accomplishments {
+    margin: 22px 0;
+  }
+  .accomplishments li + li {
+    margin-top: 14px;
+  }
+  .role-tools {
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .role-tools strong,
+  .role-tools span {
+    display: block;
+  }
+  .role-tools strong {
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+  .related-work {
+    margin-top: 22px;
+  }
+  .related-work p {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .related-work ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    padding: 0;
+    margin: 8px 0 0;
+  }
+  .related-work li + li {
+    margin: 0;
+  }
+  .related-work a {
+    font-size: 16px;
+  }
+  .experience-close {
+    padding: 28px 0 48px;
+    border-top: 1px solid var(--line);
+  }
+  @media (max-width: 800px) {
+    .experience-role {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+      padding: 34px 0;
+    }
+    .experience-lead {
+      font-size: 19px;
+    }
+    .role-summary {
+      font-size: 19px;
+    }
+    .role-identity h2 {
+      font-size: 28px;
+    }
+  }
+</style>

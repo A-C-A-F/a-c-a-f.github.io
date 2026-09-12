@@ -1,0 +1,155 @@
+---
+import data from '../data/inventory-example.json';
+import ResponsiveTable from './ResponsiveTable.astro';
+const removal = -data.units * data.disposalCostPerUnit;
+const liquidation =
+  data.units * (data.liquidationReceiptPerUnit - data.liquidationCostPerUnit);
+const scenarios = data.scenarios.map((s) => ({
+  ...s,
+  unsold: data.units - s.soldUnits,
+  sale:
+    s.soldUnits * (data.saleReceiptPerUnit - data.saleCostPerUnit) -
+    (data.units - s.soldUnits) * data.disposalCostPerUnit,
+}));
+---
+
+<div class="inventory-example">
+  <p>
+    <strong>All figures and assumptions are fictional.</strong> This general
+    decision-support example does not reproduce the employer workbook. Values use invented
+    cash units, not a real currency.
+  </p>
+  <h3>One fictional lot, two possible outcomes</h3>
+  <p>
+    Both scenarios start with {data.units} fictional units of Product Alpha and use the
+    same hypothetical decision window. Only assumed discounted-sale demand changes. All
+    options finish with no remaining stock: any units not sold in that window are disposed
+    of.
+  </p>
+  <ResponsiveTable label="Fictional shared assumptions">
+    <table>
+      <caption>Shared assumptions · invented cash units</caption>
+      <thead>
+        <tr>
+          <th scope="col">Assumption</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Starting stock</td>
+          <td>{data.units} units</td>
+        </tr>
+        <tr>
+          <td>Discounted-sale receipt per sold unit</td>
+          <td>{data.saleReceiptPerUnit}</td>
+        </tr>
+        <tr>
+          <td>Sale handling cost per sold unit</td>
+          <td>{data.saleCostPerUnit}</td>
+        </tr>
+        <tr>
+          <td>Disposal cost per unit</td>
+          <td>{data.disposalCostPerUnit}</td>
+        </tr>
+        <tr>
+          <td>Liquidation receipt per unit</td>
+          <td>{data.liquidationReceiptPerUnit}</td>
+        </tr>
+        <tr>
+          <td>Liquidation handling cost per unit</td>
+          <td>{data.liquidationCostPerUnit}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ResponsiveTable>
+  <p class="caption">
+    Net cash here means future receipts minus the displayed future costs. Original
+    purchase cost is treated as already incurred and identical across options; taxes,
+    timing, storage costs and other effects are deliberately omitted. This is not a profit
+    estimate or a realistic valuation model. Liquidation is assumed to accept the entire
+    lot; these assumptions would need verification in a real decision.
+  </p>
+  {scenarios.map((s) => (
+    <section aria-labelledby={s.label.replace(' ', '-')} class="inventory-scenario">
+      <h3 id={s.label.replace(' ', '-')}>
+        {s.label} · {s.soldUnits} units sell
+      </h3>
+      <p>
+        Assumed discounted-sale demand: {s.soldUnits} units. Remaining stock for disposal:{' '}
+        {data.units} − {s.soldUnits} = {s.unsold} units.
+      </p>
+      <ResponsiveTable
+        label={s.label + ' fictional option calculations; stacked records on mobile'}
+      >
+        <table class="mobile-records" role="table">
+          <caption>{s.label} · independently checkable net cash</caption>
+          <thead>
+            <tr>
+              <th scope="col">Option</th>
+              <th scope="col">Calculation</th>
+              <th scope="col">Net cash</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Option">Removal/disposal</td>
+              <td data-label="Calculation">
+                0 − {data.units} × {data.disposalCostPerUnit}
+              </td>
+              <td data-label="Net cash">{removal}</td>
+            </tr>
+            <tr>
+              <td data-label="Option">Discounted sale</td>
+              <td data-label="Calculation">
+                {s.soldUnits} × ({data.saleReceiptPerUnit} − {data.saleCostPerUnit}) −{' '}
+                {s.unsold} × {data.disposalCostPerUnit}
+              </td>
+              <td data-label="Net cash">{s.sale}</td>
+            </tr>
+            <tr>
+              <td data-label="Option">Liquidation</td>
+              <td data-label="Calculation">
+                {data.units} × ({data.liquidationReceiptPerUnit} −{' '}
+                {data.liquidationCostPerUnit})
+              </td>
+              <td data-label="Net cash">{liquidation}</td>
+            </tr>
+          </tbody>
+        </table>
+      </ResponsiveTable>
+      <p class="scenario-result">
+        <strong>
+          Calculated preference:{' '}
+          {s.sale > liquidation ? 'discounted sale' : 'liquidation'}.
+        </strong>{' '}
+        Highest net cash among the displayed options under this scenario's assumptions.
+      </p>
+    </section>
+  ))}
+  <h3>What changed, and what did not</h3>
+  <p>
+    Changing assumed sales from 8 to 3 units changes the discounted-sale result from 52 to
+    7. Liquidation remains 20, so the calculated preference switches. Removal/disposal
+    remains −20. These are fictional arithmetic results, not employer outcomes.
+  </p>
+  <p>
+    <strong>A calculated preference is not an operational decision.</strong> Actual
+    decisions require operational eligibility, business review and verified inputs. An
+    unavailable option cannot be selected merely because its number is higher.
+  </p>
+  <p class="caption">
+    This example demonstrates a general decision-support method, not the historical
+    workbook or its results. A calculated preference is not evidence of employer approval,
+    implementation, adoption, savings or realized results.
+  </p>
+</div>
+<style>
+  .inventory-example .inventory-scenario {
+    margin-top: 28px;
+  }
+  .scenario-result {
+    border-left: 3px solid var(--teal);
+    padding-left: 14px;
+  }
+</style>

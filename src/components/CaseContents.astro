@@ -1,0 +1,29 @@
+---
+const items = [
+  ['context', 'Business context'],
+  ['approach', 'Approach & decisions'],
+  ['example', 'Independent example'],
+  ['validation', 'Validation checks'],
+  ['outcome', 'Supported outcome'],
+  ['scope', 'Scope & limitations'],
+  ['tools', 'Tools & methods'],
+  ['evidence-index', 'Evidence index'],
+];
+---
+
+<aside class="toc" aria-label="Case contents">
+  <p class="toc-title">On this page</p>
+  <nav class="toc-links" aria-label="Case sections">
+    {items.map(([id, label]) => (
+      <a href={'#' + id}>{label} ↓</a>
+    ))}
+  </nav>
+</aside>
+<details class="mobile-toc">
+  <summary>On this page</summary>
+  <nav class="toc-links" aria-label="Mobile case sections">
+    {items.map(([id, label]) => (
+      <a href={'#' + id}>{label} ↓</a>
+    ))}
+  </nav>
+</details>

@@ -1,0 +1,125 @@
+---
+import data from '../data/competitive-example.json';
+import ResponsiveTable from './ResponsiveTable.astro';
+const selected = data.products.filter((product) => data.scope.includes(product.label));
+const ranked = [...selected].sort((a, b) => b.period2 - a.period2);
+const totals = {
+  first: selected.reduce((sum, p) => sum + p.period1, 0),
+  second: selected.reduce((sum, p) => sum + p.period2, 0),
+};
+const multiplied = data.detail.reduce(
+  (sum, row) => sum + (selected.find((p) => p.label === row.product)?.period2 ?? 0),
+  0,
+);
+---
+
+<div class="concept-dashboard">
+  <div class="comparison-notes">
+    <p>
+      <strong>Comparison periods</strong>
+      <br />
+      {data.periods.map((p) => `${p.label}: ${p.days} days, complete`).join(' · ')}
+    </p>
+    <p>
+      <strong>Ranking scope</strong>
+      <br />
+      Product Alpha and Product Beta only; ranked by Period 2 fictional activity units,
+      highest first.
+    </p>
+  </div>
+  <section id="synthetic-summary" aria-labelledby="summary-heading">
+    <h3 id="summary-heading">Summary · one row per product</h3>
+    <p class="caption">
+      Both complete periods have the same invented duration. Each value belongs to a
+      product and period, not to a query.
+    </p>
+    <ResponsiveTable label="Fictional product summary; stacked records on mobile">
+      <table class="mobile-records" role="table">
+        <caption>Selected scope · fictional activity units</caption>
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Period 1</th>
+            <th scope="col">Period 2</th>
+            <th scope="col">Period 2 rank</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ranked.map((p, i) => (
+            <tr>
+              <td data-label="Product">{p.label}</td>
+              <td data-label="Period 1">{p.period1}</td>
+              <td data-label="Period 2">{p.period2}</td>
+              <td data-label="Period 2 rank">{i + 1}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </ResponsiveTable>
+    <p id="scope-totals" class="total-note">
+      Selected-scope totals: Period 1 = <strong>{totals.first}</strong>; Period 2 ={' '}
+      <strong>{totals.second}</strong> fictional activity units.
+    </p>
+    <p class="caption">
+      Product Gamma has {data.products[2].period1} units in Period 1 and{' '}
+      {data.products[2].period2} in Period 2. It is outside the selected scope, so it
+      changes neither these totals nor the ranks.
+    </p>
+  </section>
+  <section id="synthetic-detail" aria-labelledby="detail-heading">
+    <h3 id="detail-heading">Detail · one row per product and query</h3>
+    <p class="caption">
+      Separate fictional query context for Period 2. These rows carry no activity measure
+      and do not allocate a product total to its queries.
+    </p>
+    <ResponsiveTable label="Fictional query context; scroll within table if needed">
+      <table>
+        <caption>Context only · no query-level performance</caption>
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Query</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.detail.map((row) => (
+            <tr>
+              <td>{row.product}</td>
+              <td>{row.query}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </ResponsiveTable>
+  </section>
+  <section id="synthetic-grain-check" aria-labelledby="grain-heading">
+    <h3 id="grain-heading">Why detail must not multiply the total</h3>
+    <p>
+      If each query row carried its product's Period 2 value, Product Alpha's 15 would
+      appear twice and Product Beta's 10 once:{' '}
+      <strong>15 + 15 + 10 = {multiplied}</strong>.
+    </p>
+    <p>
+      The product summary remains <strong>15 + 10 = {totals.second}</strong>. Keeping the
+      context separate preserves that meaning; query rows are not additional product
+      activity.
+    </p>
+  </section>
+</div>
+<style>
+  .concept-dashboard section {
+    margin: 24px 0 0;
+  }
+  .comparison-notes {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 8px;
+  }
+  .comparison-notes p,
+  .total-note {
+    font-size: 16px;
+  }
+  .total-note {
+    border-left: 3px solid var(--teal);
+    padding-left: 14px;
+  }
+</style>

@@ -1,0 +1,13 @@
+---
+export type EvidenceKind =
+  | 'Professional case'
+  | 'Independent illustration'
+  | 'Independent technical example · Synthetic data'
+  | 'Independent demonstration · Synthetic data';
+interface Props {
+  kind: EvidenceKind;
+}
+const { kind } = Astro.props;
+---
+
+<p class="evidence-label">{kind}</p>

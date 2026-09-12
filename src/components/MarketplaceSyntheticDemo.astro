@@ -1,0 +1,385 @@
+---
+import ResponsiveTable from './ResponsiveTable.astro';
+import fixturesSql from '../examples/code/marketplace-reporting-fixtures.sql?raw';
+import buildSql from '../examples/code/marketplace-reporting-build.sql?raw';
+import validateSql from '../examples/code/marketplace-reporting-validate.sql?raw';
+
+const orderLines = [
+  [
+    'Line A1',
+    'Order A',
+    'Customer North',
+    'Placement Pine',
+    '2026-01-05 09:00',
+    'Completed',
+  ],
+  [
+    'Line B1',
+    'Order B',
+    'Customer North',
+    'Placement Elm',
+    '2026-01-05 09:00',
+    'Completed',
+  ],
+  [
+    'Line C1',
+    'Order C',
+    'Customer South',
+    'Placement Reed',
+    '2026-01-08 08:00',
+    'Completed',
+  ],
+  ['Line D1', 'Order D', 'Customer South', 'Placement Birch', '—', 'Pending'],
+  [
+    'Line E1',
+    'Order E',
+    'Customer North',
+    'Placement Pine',
+    '2026-01-09 08:00',
+    'Completed',
+  ],
+];
+const engagement = [
+  ['Placement Pine', '4', '2', 'Both event types'],
+  ['Placement Elm', '3', '0', 'Click only'],
+  ['Placement Reed', '0', '2', 'Application only'],
+  ['Placement Birch', '0', '0', 'No engagement'],
+];
+const groups = [
+  ['Placement Pine', 'Group One', 'Mapped'],
+  ['Placement Elm', 'Group Two', 'Mapped'],
+  ['Placement Reed', '—', 'Review unmatched'],
+  ['Placement Birch', 'Group Three', 'Mapped'],
+];
+const output = [
+  ['Line A1', 'Customer North', 'Placement Pine', '1', '4 / 2', 'Mapped'],
+  ['Line B1', 'Customer North', 'Placement Elm', '2', '3 / 0', 'Mapped'],
+  ['Line C1', 'Customer South', 'Placement Reed', '1', '0 / 2', 'Review'],
+  ['Line D1', 'Customer South', 'Placement Birch', '—', '0 / 0', 'Mapped'],
+  ['Line E1', 'Customer North', 'Placement Pine', '3', '4 / 2', 'Mapped'],
+];
+const checks = [
+  ['Mapping key uniqueness', 'No duplicate placement mappings', '0 duplicates', 'Pass'],
+  ['Base-to-final rows', 'Equal row totals', '5 base / 5 final', 'Pass'],
+  ['Click reconciliation', 'Input equals placement output', '7 input / 7 output', 'Pass'],
+  [
+    'Application reconciliation',
+    'Input equals placement output',
+    '4 input / 4 output',
+    'Pass',
+  ],
+  [
+    'One-sided activity',
+    'Source populations remain visible',
+    '1 click-only / 1 application-only',
+    'Pass',
+  ],
+  ['Unmatched mappings', 'Retained for review', '1 placement', 'Review'],
+  [
+    'Purchase sequence',
+    'Completed orders follow deterministic chronological sequence',
+    '4 completed orders checked',
+    'Pass',
+  ],
+  [
+    'Repeated placement measures',
+    'Flag non-additive line detail',
+    '1 repeated placement',
+    'Review',
+  ],
+];
+---
+
+<div class="synthetic-demo">
+  <div id="synthetic-inputs-and-explanation">
+    <p class="demonstration-disclosure">
+      <strong>
+        Independent technical demonstration using synthetic data. This does not reproduce
+        an employer query, schema, dataset, or confidential business rule.
+      </strong>
+    </p>
+    <p>
+      The example first fixes the level of detail for each source. It summarizes
+      engagement before joining, preserves one-sided activity, and keeps unmatched
+      mappings visible. A second set of checks reconciles the starting records and totals
+      with the reporting output.
+    </p>
+    <p class="synthetic-grain">
+      <strong>Synthetic reporting grain.</strong> One row per fictional order line, with
+      engagement summarized separately at placement level and exposed through non-additive
+      placement measures. This describes only the example below.
+    </p>
+
+    <div id="synthetic-inputs" class="input-tables">
+      <ResponsiveTable label="Fictional order-line inputs; stacked records on mobile">
+        <table class="mobile-records" role="table">
+          <caption>Input 1 · Fictional order lines</caption>
+          <thead>
+            <tr>
+              <th scope="col">Line</th>
+              <th scope="col">Order</th>
+              <th scope="col">Customer</th>
+              <th scope="col">Placement</th>
+              <th scope="col">Completed at</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orderLines.map((row) => (
+              <tr>
+                {row.map((value, index) => (
+                  <td
+                    data-label={
+                      [
+                        'Line',
+                        'Order',
+                        'Customer',
+                        'Placement',
+                        'Completed at',
+                        'Status',
+                      ][index]
+                    }
+                  >
+                    {value}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </ResponsiveTable>
+      <ResponsiveTable label="Fictional placement engagement; stacked records on mobile">
+        <table class="mobile-records" role="table">
+          <caption>Input 2 · Fictional engagement</caption>
+          <thead>
+            <tr>
+              <th scope="col">Placement</th>
+              <th scope="col" class="num">
+                Clicks
+              </th>
+              <th scope="col" class="num">
+                Applications
+              </th>
+              <th scope="col">Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            {engagement.map((row) => (
+              <tr>
+                {row.map((value, index) => (
+                  <td
+                    class:list={{ num: index === 1 || index === 2 }}
+                    data-label={
+                      ['Placement', 'Clicks', 'Applications', 'Coverage'][index]
+                    }
+                  >
+                    {value}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </ResponsiveTable>
+      <ResponsiveTable label="Fictional placement-group mappings; stacked records on mobile">
+        <table class="mobile-records" role="table">
+          <caption>Input 3 · Fictional placement groups</caption>
+          <thead>
+            <tr>
+              <th scope="col">Placement</th>
+              <th scope="col">Group</th>
+              <th scope="col">Mapping status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {groups.map((row) => (
+              <tr>
+                {row.map((value, index) => (
+                  <td data-label={['Placement', 'Group', 'Mapping status'][index]}>
+                    {value}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </ResponsiveTable>
+    </div>
+  </div>
+
+  <div id="synthetic-sql" class="sql-disclosures">
+    <details>
+      <summary>Create the fictional inputs · view SQL</summary>
+      <p class="code-introduction">
+        The fixtures create only the generic tables and invented records displayed above,
+        including the tied completion timestamps used to test deterministic ordering.
+      </p>
+      <pre
+        tabindex="0"
+        aria-label="Fixture SQL; scroll horizontally if needed"
+      ><code>{fixturesSql}</code></pre>
+    </details>
+    <details>
+      <summary>Build the fictional reporting output · view SQL</summary>
+      <p class="code-introduction">
+        The build establishes completed-purchase sequence, accepts only unique mappings,
+        aggregates each engagement source, and keeps review states in the output.
+      </p>
+      <pre
+        tabindex="0"
+        aria-label="Build SQL; scroll horizontally if needed"
+      ><code>{buildSql}</code></pre>
+    </details>
+    <details>
+      <summary>Validate the fictional reporting output · view SQL</summary>
+      <p class="code-introduction">
+        The validation query returns one compact record for each expected condition,
+        including checks that require review rather than a forced pass.
+      </p>
+      <pre
+        tabindex="0"
+        aria-label="Validation SQL; scroll horizontally if needed"
+      ><code>{validateSql}</code></pre>
+    </details>
+  </div>
+
+  <div id="synthetic-results" class="synthetic-results">
+    <ResponsiveTable label="Fictional reporting output; stacked records on mobile">
+      <table class="mobile-records" role="table">
+        <caption>Output · one row per fictional order line</caption>
+        <thead>
+          <tr>
+            <th scope="col">Line</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Placement</th>
+            <th scope="col">Purchase sequence</th>
+            <th scope="col">Placement clicks / applications</th>
+            <th scope="col">Mapping</th>
+          </tr>
+        </thead>
+        <tbody>
+          {output.map((row) => (
+            <tr>
+              {row.map((value, index) => (
+                <td
+                  data-label={
+                    [
+                      'Line',
+                      'Customer',
+                      'Placement',
+                      'Purchase sequence',
+                      'Placement clicks / applications',
+                      'Mapping',
+                    ][index]
+                  }
+                >
+                  {value}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </ResponsiveTable>
+    <p class="caption">
+      Placement Pine appears on two order lines, so its placement-level engagement is
+      visible twice and must not be added from this line-level output. Separate placement
+      totals remain 7 clicks and 4 applications.
+    </p>
+    <ResponsiveTable label="Fictional validation results; stacked records on mobile">
+      <table class="validation-table mobile-records" role="table">
+        <caption>Validation results · independently recalculable</caption>
+        <thead>
+          <tr>
+            <th scope="col">Check</th>
+            <th scope="col">Expected condition</th>
+            <th scope="col">Synthetic result</th>
+            <th scope="col">State</th>
+          </tr>
+        </thead>
+        <tbody>
+          {checks.map((row) => (
+            <tr>
+              {row.map((value, index) => (
+                <td
+                  data-label={
+                    ['Check', 'Expected condition', 'Synthetic result', 'State'][index]
+                  }
+                >
+                  {value}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </ResponsiveTable>
+  </div>
+  <p class="caption">
+    The fictional example demonstrates reporting-grain controls, pre-aggregation,
+    unmatched-record handling, and reconciliation. It is separate from the historical
+    employer implementation and its results.
+  </p>
+</div>
+
+<style>
+  .demonstration-disclosure {
+    padding-left: 14px;
+    border-left: 3px solid var(--teal);
+  }
+  .synthetic-grain {
+    padding: 14px 16px;
+    background: var(--paper);
+  }
+  .input-tables,
+  .synthetic-results {
+    display: grid;
+    gap: 28px;
+    margin-top: 26px;
+  }
+  .sql-disclosures {
+    display: grid;
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .validation-table th:last-child,
+  .validation-table td:last-child {
+    white-space: nowrap;
+  }
+  details {
+    min-width: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+  }
+  summary {
+    min-height: 48px;
+    padding: 13px 4px;
+    color: var(--teal);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .code-introduction {
+    margin: 0 15px 13px;
+    color: var(--muted);
+    font-size: 15px;
+  }
+  pre {
+    max-width: 100%;
+    margin: 0 15px 16px;
+  }
+  @media (max-width: 700px) {
+    summary {
+      padding-right: 2px;
+      padding-left: 2px;
+    }
+    .code-introduction {
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+    pre {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+</style>
