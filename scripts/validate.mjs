@@ -128,7 +128,7 @@ export function approvedResume(name, bytes, { generated = false } = {}) {
   return (
     normalized === expected &&
     createHash('sha256').update(bytes).digest('hex') ===
-      '2e72a8f59702b5d8e9de9d19186727098a867f6c15179523c2aba85b31ca69ce'
+      'fe08f0b4253cfade1552f20e289ec14ce7eba79fed64ea4489fa8b5087024588'
   );
 }
 
